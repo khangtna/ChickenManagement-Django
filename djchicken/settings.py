@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-!=xzpfjxk9w$gl&p)2x6=*+n&7$6u6(6)3+19nqfbturt$t7$o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', 'apichicken.herokuapp.com']
 
 
 # Application definition
