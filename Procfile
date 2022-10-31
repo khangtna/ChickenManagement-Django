@@ -1,4 +1,4 @@
-web: gunicorn djchicken.wsgi --host=0.0.0.0 
+web: gunicorn djchicken.wsgi 
 
 # release: python manage.py makemigrations --noinput
 # release: python manage.py collectstatic --noinput
