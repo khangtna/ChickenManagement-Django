@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-!=xzpfjxk9w$gl&p)2x6=*+n&7$6u6(6)3+19nqfbturt$t7$o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -100,10 +100,9 @@ DATABASES = {
         'NAME': 'chickenDB1',
         'USER': 'postgres',
         'PASSWORD': '0',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        
 
-        'CONN_MAX_AGE': 500
+        
     }
 }
 
