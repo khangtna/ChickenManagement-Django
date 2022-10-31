@@ -102,7 +102,8 @@ DATABASES = {
         'PASSWORD': '0',
         'HOST': 'localhost',
 
-        'SSL_REQUIRE': True,
+        # 'SSL_REQUIRE': True,
+        'SSLMODE': 'require',
         'CONN_MAX_AGE': 500,
     }
 }
