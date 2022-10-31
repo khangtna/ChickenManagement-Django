@@ -100,7 +100,8 @@ DATABASES = {
         'NAME': 'chickenDB1',
         'USER': 'postgres',
         'PASSWORD': '0',
-        
+        'HOST': 'localhost',
+
 
         
     }
