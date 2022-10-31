@@ -103,7 +103,6 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
 
-        'CONN_MAX_AGE': 500
     }
 }
 
@@ -155,4 +154,4 @@ STATICFILES_DIRS = [
 
 ]
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
