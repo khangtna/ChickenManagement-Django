@@ -100,11 +100,11 @@ DATABASES = {
         'NAME': 'chickenDB1',
         'USER': 'postgres',
         'PASSWORD': '0',
-        'HOST': 'apichicken.herokuapp.com',
+        'HOST': 'localhost',
         'PORT': '5432',
 
 
-        'CONN_MAX_AGE': 500,
+        # 'CONN_MAX_AGE': 500,
     }
 }
 
