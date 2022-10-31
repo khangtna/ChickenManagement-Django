@@ -102,8 +102,8 @@ DATABASES = {
         'PASSWORD': '0',
         'HOST': 'localhost',
 
-
-        
+        'SSL_REQUIRE': True,
+        'CONN_MAX_AGE': 500,
     }
 }
 
