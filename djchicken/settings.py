@@ -100,10 +100,10 @@ DATABASES = {
         'NAME': 'chickenDB1',
         'USER': 'postgres',
         'PASSWORD': '0',
-        'HOST': 'localhost',
+        'HOST': 'apichicken.herokuapp.com',
+        'PORT': '5432',
 
-        # 'SSL_REQUIRE': True,
-        'SSLMODE': 'require',
+
         'CONN_MAX_AGE': 500,
     }
 }
