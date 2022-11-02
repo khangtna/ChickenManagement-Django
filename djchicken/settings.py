@@ -90,6 +90,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djchicken.wsgi.application'
 
+# AUTH_USER_MODEL = 'emp.models.EMPS'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

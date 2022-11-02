@@ -21,10 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls), 
     
     # web
-    path('', include('core.urls')),
+    # path('', include('core.urls')),
     path('emp/', include('emp.urls')),
 
     # api
-    path('api/emp/', include('api.urls', 'emp_api')),
+    path('api/emp/', include('api.urls')),
     
 ]

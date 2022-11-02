@@ -17,7 +17,6 @@
 
 {% endblock %}
 
-
 {% block content1 %}
 <body id="page-top">
 
@@ -25,8 +24,9 @@
     <div id="wrapper">
 
 {% endblock %}
-        
-{% block content2 %}
+
+    {% block content2 %}
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -37,11 +37,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                     <!-- Topbar Search -->
                     <form
@@ -84,9 +82,9 @@
                             </div>
                         </li>
 
-                        
+                       
 
-                        
+                      
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -130,73 +128,66 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Quản lý nhân viên</h1>
-                    <p class="mb-4">Bạn muốn thêm 1 nhân viên mới? Nhấn vào đây: 
-                        <a href="add/" class="btn btn-success btn-circle">
-                            <i class="fas fa-check"></i>
-
-                        </a>
-                    </p>
-                    
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Nhân viên</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Họ</th>
-                                            <th>Tên</th>
-                                            <th>Giới tính</th>
-                                            <th>Ngày sinh</th>
-                                            <th>SĐT</th>
-                                            <th>Địa chỉ</th>
-                                            <th>Lương</th>
-                                            <th>Trạng thái</th>
-                                            <th><b><i>Sửa</i></b></th>
-                                            <th><b><i>Xóa</i></b></th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                        {% for item in emps %}
-                                        <tr>
-                                            <td>{{ item.id }}</td>
-                                            <td>{{ item.l_name }}</td>
-                                            <td>{{ item.f_name }}</td>
-                                            <td>{{ item.gender }}</td>
-                                            <td>{{ item.date }}</td>
-                                            <td>{{ item.numberPhone }}</td>
-                                            <td>{{ item.address }}</td>
-                                            <td>{{ item.salary }}</td>
-                                            <td>{{ item.status }}</td>
-                                            <td>
-                                                <a href="#" class="btn btn-info btn-circle btn-sm">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </a>
-                                            </td>
-                                            <td>                    
-                                                <button class="btn btn-danger btn-circle btn-sm" onclick="confirm('ban co muon xoa khong?')" >
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </td>
-                                            
-                                        </tr>
-                                        {% endfor %}
-                                       
-                                    </tbody>
-                                </table>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Nhập thông tin nhân viên mới!</h1>
                             </div>
+                            <form class="user" action="">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="First Name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="Last Name">
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>Giới tính: </label>
+                                        <select>
+                                            <option>other</option>
+                                            <option>male</option>
+                                            <option>female</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label for="ns">Ngày sinh:</label> 
+                                        <input type="date" class="form-control form-control-user" id="ns"
+                                                placeholder="Ngày sinh">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="Địa chỉ">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="number" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Số điện thoại">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="number" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Lương">
+                                    </div>
+                                </div>
+                                
+                                <a href="/emp" class="btn btn-primary btn-user btn-block">
+                                    Thêm
+                                </a>
+                                <a href="/emp" class="btn bg-gray-200 btn-user btn-block">
+                                    Trở lại
+                                </a>
+                                <hr>
+                                
+                            </form>
+                            <hr>
+                            
                         </div>
-                        
                     </div>
 
-                
                 </div>
                 <!-- /.container-fluid -->
 
@@ -243,8 +234,8 @@
             </div>
         </div>
     </div>
+    {% endblock %}
 
-{% endblock %}
 
 {% block jsblock %}
 
