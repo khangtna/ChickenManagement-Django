@@ -26,7 +26,7 @@ def getAllEMP(request):
     url_api= requests.get('https://apichicken.herokuapp.com/api/emp/')
     context = url_api.json()
 
-    return render(request, 'homepage/tables.html', {
+    return render(request, 'homepage/EMP.html', {
         'emps': context
         })
 

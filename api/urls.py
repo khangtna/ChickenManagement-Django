@@ -15,7 +15,7 @@ urlpatterns = [
     path('<id>/update', views.api_updateEmp, name='update'),
     path('<id>/delete', views.api_delEmp, name='delete'),
     
-    # path('create', views.apiCreateEMP.as_view()),
+    
 
 
 ]
