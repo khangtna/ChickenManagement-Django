@@ -35,7 +35,7 @@ def getAllEMP(request):
 
 def addEMP(request):
 
-    url_api= 'https://apichicken.herokuapp.com/api/emp/create/'
+    url_api= 'https://apichicken.herokuapp.com/api/emp/abc/'
     # context = url_api.json()
     data={}
 
@@ -66,7 +66,7 @@ def addEMP(request):
     # data['form']= form.data
     print(data)
         
-    emp= requests.post(url_api, data= data)
+    requests.post(url_api, data= data)
 
     return render(request, 'homepage/addEMP.html')
 
