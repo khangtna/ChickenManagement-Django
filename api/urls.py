@@ -6,8 +6,9 @@ from . import views
 
 
 router= routers.DefaultRouter()
-router.register('all', views.apigetAllEMP, 'allemp')
+# router.register('all', views.apigetAllEMP, 'allemp')
 router.register('abc', views.apiEMP)
+router.register('all', views.apigetEMP, 'idemp')
 
 # app_name= 'emp'
 

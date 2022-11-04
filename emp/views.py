@@ -39,34 +39,43 @@ def addEMP(request):
     # context = url_api.json()
     data={}
 
-    if request.method== "POST":
-        l_name= request.POST['l_name']
-        f_name= request.POST['f_name']
-        gender= request.POST['gt']
-        date= request.POST['date']
-        address= request.POST['address']
-        numberPHone= request.POST['numberPhone']
-        salary= request.POST['salary']
+    # if request.method== "POST":
+    #     l_name= request.GET['l_name']
+    #     f_name= request.GET['f_name']
+    #     gender= request.GET['gt']
+    #     date= request.GET['date']
+    #     address= request.GET['address']
+    #     numberPHone= request.GET['numberPhone']
+    #     salary= request.GET['salary']
 
-        data['l_name']= l_name
-        data['f_name']= f_name
-        data['gender']= gender
-        data['date']= date
-        data['address']= address
-        data['numberPHone']= numberPHone
-        data['salary']= salary
+    #     data['l_name']= l_name
+    #     data['f_name']= f_name
+    #     data['gender']= gender
+    #     data['date']= date
+    #     data['address']= address
+    #     data['numberPhone']= numberPhone
+    #     data['salary']= salary
 
         
 
-    # form= CreateEMPPostForm(request.POST)
-    # if form.is_valid():
-    #     form.save()
+    form= CreateEMPPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
 
-    
-    # data['form']= form.data
+
+
+    data['l_name']= form.data['l_name']
+    data['f_name']= form.data['f_name']
+    data['gender']= form.data.get('gender')
+    data['date']= form.data['date']
+    data['address']= form.data['address']
+    data['numberPhone']= form.data['numberPhone']
+    data['salary']= form.data['salary']
+  
+
     print(data)
-        
-    requests.post(url_api, data= data)
+    
+    requests.post(url_api, data=data)
 
     return render(request, 'homepage/addEMP.html')
 

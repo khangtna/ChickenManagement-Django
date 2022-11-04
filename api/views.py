@@ -107,9 +107,24 @@ class apiEMP(viewsets.ModelViewSet):
     serializer_class = EMPSerializer
 
 
-class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):
+# class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):
     
-    # queryset = EMPs.objects.all()
-    queryset = EMPs.objects.filter(status = True)
+#     queryset = EMPs.objects.all()
+#     # queryset = EMPs.objects.filter(status = True)
+#     serializer_class = EMPSerializer
+
+
+class apigetEMP(viewsets.ViewSet, generics.ListAPIView):
+    
     serializer_class = EMPSerializer
+    
+    def get_queryset(self):
+        emp = EMPs.objects.filter(status = True)
+
+        id= self.request.query_params.get('id')
+        if id is not None:
+            emp= emp.filter(id__contains=id)
+        
+        return emp
+
     
