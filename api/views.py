@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from rest_framework import status, permissions, viewsets, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, action
 
 
 from emp.models import EMPs
@@ -96,18 +96,20 @@ def api_createEmp(request):
         serilaizer = EMPSerializer(data= request.data)
 
         if serilaizer.is_valid():
-            # serilaizer.save()
-            l_name= serilaizer.data['l_name']
-            f_name= serilaizer.data['f_name']
-            numberPhone= serilaizer.data['numberPhone']
-            address= serilaizer.data['address']
-            EMPs.objects.create(l_name= l_name, f_name=f_name ,numberPhone=numberPhone, address=address)
+            serilaizer.save()
             return Response(serilaizer.data, status= status.HTTP_201_CREATED)
 
         return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
 
 
-class apiCreateEMP(generics.ListCreateAPIView):
-    
-    queryset = EMPs.objects.all()
+class apiEMP(viewsets.ModelViewSet):
+    queryset = EMPs.objects.filter(status = True)
     serializer_class = EMPSerializer
+
+
+class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):
+    
+    # queryset = EMPs.objects.all()
+    queryset = EMPs.objects.filter(status = True)
+    serializer_class = EMPSerializer
+    

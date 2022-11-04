@@ -133,50 +133,54 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Nhập thông tin nhân viên mới!</h1>
                             </div>
-                            <form class="user" action="">
+
+                            <form action="{% url 'addemp' %}"  method="post">
+                                {% csrf_token %}
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                        <input type="text" class="form-control form-control-user" name="f_name" id="id_f_name"
                                             placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        <input type="text" class="form-control form-control-user" name="l_name" id="id_l_name"
                                             placeholder="Last Name">
                                     </div>
                                 </div>
                                     <div class="form-group row">
                                         <div class="col-sm-6 mb-3 mb-sm-0">
                                         <label>Giới tính: </label>
-                                        <select>
-                                            <option>other</option>
-                                            <option>male</option>
-                                            <option>female</option>
-                                        </select>
+                                        <ul>
+                                            <input type="radio" name="gt" > other</input>
+                                            <input type="radio" name="gt" > male</input>
+                                            <input type="radio" name="gt" > female</input>
+                                        </ul>
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="ns">Ngày sinh:</label> 
-                                        <input type="date" class="form-control form-control-user" id="ns"
+                                        <input type="date" class="form-control form-control-user" name="date" id="id_gt"
                                                 placeholder="Ngày sinh">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" id="exampleInputEmail"
+                                    <input type="text" class="form-control form-control-user" name="address" id="id_address"
                                         placeholder="Địa chỉ">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="number" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Số điện thoại">
+                                        <input type="number" class="form-control form-control-user" id="id_nb"
+                                        name="numberPhone" placeholder="Số điện thoại">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="number" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Lương">
+                                        <input type="number" class="form-control form-control-user" id="id_salary"
+                                        name="salary" placeholder="Lương">
                                     </div>
                                 </div>
                                 
-                                <a href="/emp" class="btn btn-primary btn-user btn-block">
+
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Thêm
-                                </a>
+                                </button>
                                 <a href="/emp" class="btn bg-gray-200 btn-user btn-block">
                                     Trở lại
                                 </a>

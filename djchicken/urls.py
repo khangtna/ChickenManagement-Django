@@ -25,6 +25,6 @@ urlpatterns = [
     path('emp/', include('emp.urls')),
 
     # api
-    path('api/emp/', include('api.urls')),
+    path('api/', include('api.urls')),
     
 ]

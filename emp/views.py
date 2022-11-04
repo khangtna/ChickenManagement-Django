@@ -8,8 +8,10 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, viewsets
 
 import requests
+import json
 
 from .models import EMPs
+from .forms import CreateEMPPostForm
 
 
 
@@ -33,11 +35,38 @@ def getAllEMP(request):
 
 def addEMP(request):
 
-    context = {}
-    # emp = get_object_or_404(EMPs, pk = 'id') # dùng khi có điều kiện
-    #emp = EMPs.objects.all()
+    url_api= 'https://apichicken.herokuapp.com/api/emp/create/'
+    # context = url_api.json()
+    data={}
 
-    #context['emps']= emp
+    if request.method== "POST":
+        l_name= request.POST['l_name']
+        f_name= request.POST['f_name']
+        gender= request.POST['gt']
+        date= request.POST['date']
+        address= request.POST['address']
+        numberPHone= request.POST['numberPhone']
+        salary= request.POST['salary']
 
-    return render(request, 'homepage/addEMP.html', context)
+        data['l_name']= l_name
+        data['f_name']= f_name
+        data['gender']= gender
+        data['date']= date
+        data['address']= address
+        data['numberPHone']= numberPHone
+        data['salary']= salary
+
+        
+
+    # form= CreateEMPPostForm(request.POST)
+    # if form.is_valid():
+    #     form.save()
+
+    
+    # data['form']= form.data
+    print(data)
+        
+    emp= requests.post(url_api, data= data)
+
+    return render(request, 'homepage/addEMP.html')
 
