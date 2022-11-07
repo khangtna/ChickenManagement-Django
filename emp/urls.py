@@ -16,6 +16,9 @@ urlpatterns = [
 
     path('', views.getAllEMP, name='emp'),
     path('add/', views.addEMP, name='addemp'),
+    path('del/<id>', views.delEMP, name='delemp'),
+    path('update/<id>', views.updateEMP, name='updateemp'),
+   
 
     
 ]

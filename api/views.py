@@ -105,6 +105,7 @@ def api_createEmp(request):
 class apiEMP(viewsets.ModelViewSet):
     queryset = EMPs.objects.filter(status = True)
     serializer_class = EMPSerializer
+    http_method_names = ['patch','put', ]
 
 
 # class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):

@@ -9,6 +9,7 @@ from rest_framework import status, permissions, viewsets
 
 import requests
 import json
+from types import SimpleNamespace
 
 from .models import EMPs
 from .forms import CreateEMPPostForm
@@ -37,45 +38,93 @@ def addEMP(request):
 
     url_api= 'https://apichicken.herokuapp.com/api/emp/abc/'
     # context = url_api.json()
-    data={}
+    data={}     
+    
+    form= CreateEMPPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
 
-    # if request.method== "POST":
-    #     l_name= request.GET['l_name']
-    #     f_name= request.GET['f_name']
-    #     gender= request.GET['gt']
-    #     date= request.GET['date']
-    #     address= request.GET['address']
-    #     numberPHone= request.GET['numberPhone']
-    #     salary= request.GET['salary']
+    data['l_name']= form.data.get('l_name')
+    data['f_name']= form.data.get('f_name')
+    data['gender']= form.data.get('gender')
+    data['date']= form.data.get('date')
+    data['address']= form.data.get('address')
+    data['numberPhone']= form.data.get('numberPhone')
+    data['salary']= form.data.get('salary')
+    data['status']= form.data.get('status')
+  
+    # print(data)
+    
+    requests.post(url_api, data=data)
+    
+    return render(request, 'homepage/addEMP.html')
 
-    #     data['l_name']= l_name
-    #     data['f_name']= f_name
-    #     data['gender']= gender
-    #     data['date']= date
-    #     data['address']= address
-    #     data['numberPhone']= numberPhone
-    #     data['salary']= salary
 
-        
+def delEMP(request, id):
+
+    url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
+    # context = url_api.json()
+    data={}     
 
     form= CreateEMPPostForm(request.POST or None)
     if form.is_valid():
         form.save()
 
-
-
-    data['l_name']= form.data['l_name']
-    data['f_name']= form.data['f_name']
+    data['l_name']= form.data.get('l_name')
+    data['f_name']= form.data.get('f_name')
     data['gender']= form.data.get('gender')
-    data['date']= form.data['date']
-    data['address']= form.data['address']
-    data['numberPhone']= form.data['numberPhone']
-    data['salary']= form.data['salary']
-  
+    data['date']= form.data.get('date')
+    data['address']= form.data.get('address')
+    data['numberPhone']= form.data.get('numberPhone')
+    data['salary']= form.data.get('salary')
+    data['status']= form.data.get('status')
+
+    # print(data)
+    
+    requests.delete(url_api, data=data)
+
+    return redirect('/emp')
+
+
+from collections import namedtuple
+
+def customStudentDecoder(empDict):
+    return namedtuple('X', empDict.keys())(*empDict.values())
+
+
+def updateEMP(request, id):
+
+    # url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
+    url_api= 'https://apichicken.herokuapp.com/api/%s/update' %id
+    url_get='https://apichicken.herokuapp.com/api/%s' %id
+
+    info_emp= requests.get(url_get)
+    context = info_emp.json()
+
+    data={}     
+
+    form= CreateEMPPostForm(request.POST or None )
+    if form.is_valid():
+        form.save()
+
+    data['l_name']= form.data.get('l_name')
+    data['f_name']= form.data.get('f_name')
+    data['gender']= form.data.get('gender')
+    data['date']= form.data.get('date')
+    data['address']= form.data.get('address')
+    data['numberPhone']= form.data.get('numberPhone')
+    data['salary']= form.data.get('salary')
+    data['status']= form.data.get('status')
 
     print(data)
     
-    requests.post(url_api, data=data)
+    requests.put(url_api, data=data)
 
-    return render(request, 'homepage/addEMP.html')
+    return render(request, 'homepage/updateEMP.html', {
+
+        'emp': context
+        
+        })
+
+
 

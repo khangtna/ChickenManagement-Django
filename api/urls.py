@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('emp/', include(router.urls)),
 
-    path('', views.api_getAllEmp, name='emp'),
+    path('', views.api_getAllEmp, name='apiemp'),
     path('create', views.api_createEmp, name='create'),
     
     path('<id>/', views.api_getIDEmp, name='empID'),   

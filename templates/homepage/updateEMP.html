@@ -82,9 +82,9 @@
                             </div>
                         </li>
 
-                       
 
-                      
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -125,26 +125,25 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="row justify-content-center">
 
                     <!-- Page Heading -->
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Nhập thông tin nhân viên mới!</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Chỉnh sửa thông tin nhân viên</h1>
                             </div>
-
-                            <form action="{% url 'addemp' %}"  method="post">
-                                {% csrf_token %}
-
+                            <form action="{% url 'updateemp' emp.id %}" method="post">
+                                {% csrf_token %}    
+                                
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="text" class="form-control form-control-user" name="f_name" id="id_f_name"
-                                            placeholder="First Name">
+                                            placeholder="First Name" value= '{{ emp.f_name }}'>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control form-control-user" name="l_name" id="id_l_name"
-                                            placeholder="Last Name">
+                                            placeholder="Last Name" value= '{{ emp.l_name }}'>
                                     </div>
                                 </div>
                                     <div class="form-group row">
@@ -164,21 +163,21 @@
                                     <div class="col-sm-6">
                                         <label for="ns">Ngày sinh:</label> 
                                         <input type="date" class="form-control form-control-user" name="date" id="id_gt"
-                                                placeholder="Ngày sinh">
+                                                placeholder="Ngày sinh" value= '{{ emp.date }}'>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="address" id="id_address"
-                                        placeholder="Địa chỉ">
+                                        placeholder="Địa chỉ" value= '{{ emp.address }}'>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="number" class="form-control form-control-user" id="id_nb"
-                                        name="numberPhone" placeholder="Số điện thoại">
+                                        name="numberPhone" placeholder="Số điện thoại" value= '{{ emp.numberPhone }}'>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="number" class="form-control form-control-user" id="id_salary"
-                                        name="salary" placeholder="Lương">
+                                        name="salary" placeholder="Lương" value= '{{ emp.salary }}'>
                                     </div>
                                 </div>
                                 
@@ -195,10 +194,9 @@
                                     
                                 </div>
                             </div>
-                                
 
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
-                                    Thêm
+                               <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Lưu
                                 </button>
                                 <a href="/emp" class="btn bg-gray-200 btn-user btn-block">
                                     Trở lại
@@ -207,7 +205,7 @@
                                 
                             </form>
                             <hr>
-                            
+
                         </div>
                     </div>
 
