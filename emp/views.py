@@ -87,16 +87,11 @@ def delEMP(request, id):
     return redirect('/emp')
 
 
-from collections import namedtuple
-
-def customStudentDecoder(empDict):
-    return namedtuple('X', empDict.keys())(*empDict.values())
-
 
 def updateEMP(request, id):
 
-    # url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
-    url_api= 'https://apichicken.herokuapp.com/api/%s/update' %id
+    url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
+    # url_api= 'https://apichicken.herokuapp.com/api/%s/update' %id
     url_get='https://apichicken.herokuapp.com/api/%s' %id
 
     info_emp= requests.get(url_get)
