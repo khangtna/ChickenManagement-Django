@@ -63,6 +63,7 @@ def addEMP(request):
 def delEMP(request, id):
 
     url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
+    # url_api= 'https://apichicken.herokuapp.com/api/delete/%s' %id
     # context = url_api.json()
     data={}     
 

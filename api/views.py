@@ -93,6 +93,7 @@ def api_createEmp(request):
     # emps = EMPs.objects.get(id = id)
     
     if request.method == 'POST':
+        
         serilaizer = EMPSerializer(data= request.data)
 
         if serilaizer.is_valid():
@@ -105,7 +106,8 @@ def api_createEmp(request):
 class apiEMP(viewsets.ModelViewSet):
     queryset = EMPs.objects.filter(status = True)
     serializer_class = EMPSerializer
-    http_method_names = ['patch','put', ]
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post' ]
 
 
 # class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):
