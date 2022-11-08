@@ -107,7 +107,7 @@ class apiEMP(viewsets.ModelViewSet):
     queryset = EMPs.objects.filter(status = True)
     serializer_class = EMPSerializer
     permission_classes = [permissions.AllowAny,]
-    http_method_names = ['patch','put','get','post' ]
+    http_method_names = ['patch','put','get','post','delete' ]
 
 
 # class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):
