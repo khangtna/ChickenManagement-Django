@@ -19,7 +19,7 @@ urlpatterns = [
     path('', views.api_getAllEmp, name='apiemp'),
     # path('create', views.api_createEmp, name='create'),
     
-    # path('<id>', views.api_getIDEmp, name='empID'),   
+    path('<id>/', views.api_getIDEmp, name='empID'),   
     # path('update/', views.api_updateEmp, name='update'),
     path('update/<id>/', views.api_updateEmp, name='update'),
     path('delete/<id>/', views.api_delEmp, name='delete'),

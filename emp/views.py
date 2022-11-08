@@ -91,8 +91,8 @@ def delEMP(request, id):
 def updateEMP(request, id):
 
     # url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
-    url_api= 'https://apichicken.herokuapp.com/api/update/%s/' %id
-    url_get='https://apichicken.herokuapp.com/api/%s' %id
+    url_api= 'https://apichicken.herokuapp.com/api/update/%s' %id
+    url_get='https://apichicken.herokuapp.com/api/%s/' %id
 
     info_emp= requests.get(url_get)
     context = info_emp.json()
