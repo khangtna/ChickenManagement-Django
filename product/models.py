@@ -15,7 +15,7 @@ class Category(models.Model):
         return str(self.id_category)
 
 
-class Product(models.Model):
+class Products(models.Model):
 
     id_product = models.AutoField(primary_key=True)
     name = models.CharField(max_length= 15)
