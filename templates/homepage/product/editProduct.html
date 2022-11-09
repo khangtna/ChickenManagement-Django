@@ -133,43 +133,41 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Cập nhật món ăn</h1>
                             </div>
-                            <form class="user" action="">
+                            <form action="{% url 'editproduct' product.id_product %}" method="post">
+
+                                {% csrf_token %}
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="tenMonAn"
-                                            placeholder="Tên món ăn">
+                                            placeholder="Tên món ăn" value="{{ product.name }}">
                                 </div>
                                  <div class="form-group">
-                                     <input type="text" class="form-control form-control-user" name="giaMonAn"
-                                            placeholder="Giá tiền">
+                                     <input type="number" class="form-control form-control-user" name="giaMonAn"
+                                            placeholder="Giá tiền" value="{{ product.price }}">
                                 </div>
+                               
                                 <div class="form-group">
-                                    <label>Nhân Viên: </label>
-                                    <select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
+
                                     <label>Danh mục: </label>
-                                    <select>
-                                        <option>Gà</option>
-                                        <option>Cơm</option>
-                                        <option>Kem</option>
+                                    
+                                    <select name="category">
+                                        {% for i in category %}
+                                        <option value="{{ i.id_category }}">{{ i.name_category }}</option>
+                                        {% endfor %}
                                     </select>
+                                   
                                 </div>
                                  <div class="form-group">
                                         <label>Trạng thái: </label>
                                         <ul>
-                                            <input type="radio" name="gt" value = "true" checked> true</input>
-                                            <input type="radio" name="gt" value = "false"> false</input>
+                                            <input type="radio" name="status" value = "true" checked> True</input>
+                                            <input type="radio" name="status" value = "false"> False</input>
                                         </ul>
                                 </div>
                                 
-                                <a href="/emp" class="btn btn-primary btn-user btn-block">
-                                    Lưu
-                                </a>
-                                <a href="/emp" class="btn bg-gray-200 btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Sửa
+                                </button>
+                                <a href="/product" class="btn bg-gray-200 btn-user btn-block">
                                     Trở lại
                                 </a>
                             </form>

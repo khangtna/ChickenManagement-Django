@@ -24,5 +24,6 @@ urlpatterns = [
     path('update/<id>/', views.api_updateEmp, name='update-emp'),
     # path('delete/<id>/', views.api_delEmp, name='delete'),
     
+    path('product/edit/<id>/', views.api_editProduct, name='edit-product'),
 
 ]

@@ -135,6 +135,26 @@ class apiProduct(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny,]
     http_method_names = ['patch','put','get','post','delete' ]
 
+@api_view(['PUT', ])
+def api_editProduct(request, id):
+    
+    try:
+        products = Products.objects.get(id = id)
+
+    except Products.DoesNotExist:
+        return Response(status= status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'PUT':
+        serilaizer = ProductSerializer(products, data= request.data)
+        data={}
+        if serilaizer.is_valid():
+            serilaizer.save()
+            data['success']= 'Cập nhật thành công!'
+            return Response(data= data)
+
+        return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
+
+
 
 class apiCategory(viewsets.ModelViewSet):
     queryset = Category.objects.all()

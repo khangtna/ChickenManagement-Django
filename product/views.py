@@ -11,6 +11,7 @@ from .forms import CreateProductPostForm
 
 import requests
 import json
+
 # Create your views here.
 
 
@@ -28,9 +29,10 @@ def getAllProduct(request):
 
 def addProduct(request):
 
+    url_api_category= requests.get('https://apichicken.herokuapp.com/api/category/')
+    context = url_api_category.json()
+
     url_api= 'https://apichicken.herokuapp.com/api/product/'
-    # url_api_category= 'https://apichicken.herokuapp.com/api/category/'
-    # context = url_api.json()
     data={}     
     
     form= CreateProductPostForm(request.POST or None)
@@ -38,7 +40,7 @@ def addProduct(request):
         form.save()
 
     data['name']= form.data.get('tenMonAn')
-    data['price']= form.data.get('giaMonAn')
+    data['id_category']= form.data.get('category')
     data['price']= form.data.get('giaMonAn')
     data['status']= form.data.get('status')
   
@@ -46,6 +48,64 @@ def addProduct(request):
     
     requests.post(url_api, data=data)
 
-    return render(request, 'homepage/product/addProduct.html')
+    return render(request, 'homepage/product/addProduct.html', {
+        "category": context
 
+    })
+
+
+def delProduct(request, id):
+
+    url_api= 'https://apichicken.herokuapp.com/api/product/%s' %id
+
+    data={}     
+
+    form= CreateProductPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name']= form.data.get('tenMonAn')
+    data['id_category']= form.data.get('category')
+    data['price']= form.data.get('giaMonAn')
+    data['status']= form.data.get('status')
+
+    # print(data)
+    
+    requests.delete(url_api, data=data)
+
+    return redirect('/product')
+
+
+def editProduct(request, id):
+
+    url_api_edit= 'https://apichicken.herokuapp.com/api/product/edit/%s/' %id
+    url_api= 'https://apichicken.herokuapp.com/api/product/%s/' %id
+
+    url_api_category= requests.get('https://apichicken.herokuapp.com/api/category/')
+    category = url_api_category.json()
+
+    info_emp= requests.get(url_api)
+    context = info_emp.json()
+
+    data={}     
+
+    form= CreateProductPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name']= form.data.get('tenMonAn')
+    data['id_category']= form.data.get('category')
+    data['price']= form.data.get('giaMonAn')
+    data['status']= form.data.get('status')
+
+    print(data)
+    
+    requests.put(url_api_edit, data=data)
+
+    return render(request, 'homepage/product/editProduct.html', {
+
+        'product': context,
+        'category': category
+        
+        })
 
