@@ -19,7 +19,7 @@ class Products(models.Model):
 
     id_product = models.AutoField(primary_key=True)
     name = models.CharField(max_length= 15)
-    id_category= models.ForeignKey('Category', on_delete=models.CASCADE)
+    # id_category= models.ForeignKey('Category', on_delete=models.CASCADE)
     price = models.FloatField(default= 0)
     status= models.BooleanField(default= True)
 

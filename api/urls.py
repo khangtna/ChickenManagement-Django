@@ -6,7 +6,6 @@ from . import views
 
 
 router= routers.DefaultRouter()
-# router.register('all', views.apigetEMP, 'idemp')
 router.register('emp', views.apiEMP)
 router.register('product', views.apiProduct)
 
