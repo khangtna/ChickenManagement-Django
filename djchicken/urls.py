@@ -23,6 +23,7 @@ urlpatterns = [
     # web
     # path('', include('core.urls')),
     path('emp/', include('emp.urls')),
+    path('product/', include('product.urls')),
 
     # api
     path('api/', include('api.urls')),

@@ -1,9 +1,8 @@
 from email.policy import default
 from random import choices
-from statistics import mode
-from unittest.util import _MAX_LENGTH
+
 from django.db import models
-from djchicken import settings
+
 
 # Create your models here.
 
@@ -24,7 +23,6 @@ class EMPs(models.Model):
     address= models.CharField(max_length= 30)
     salary= models.FloatField(default= 0)
     status= models.BooleanField(default= True)
-    # author= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete= models.CASCADE)
 
     def __str__(self):
         return str(self.id)

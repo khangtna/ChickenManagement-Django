@@ -9,8 +9,9 @@ from rest_framework.decorators import api_view, permission_classes, action
 
 
 from emp.models import EMPs
+from product.models import Product, Category
 
-from .serializers import EMPSerializer
+from .serializers import EMPSerializer, ProductSerializer, CategorySerializer
 
 
 @api_view(['GET', ])
@@ -88,10 +89,6 @@ def api_delEmp(request, id):
 # @permission_classes([permissions.AllowAny])
 def api_createEmp(request):
     
-    # emps = EMPs.objects.create()
-    # emps = EMPSerializer()
-    # emps = EMPs.objects.get(id = id)
-    
     if request.method == 'POST':
         
         serilaizer = EMPSerializer(data= request.data)
@@ -110,13 +107,6 @@ class apiEMP(viewsets.ModelViewSet):
     http_method_names = ['patch','put','get','post','delete' ]
 
 
-# class apigetAllEMP( viewsets.ViewSet, generics.ListAPIView):
-    
-#     queryset = EMPs.objects.all()
-#     # queryset = EMPs.objects.filter(status = True)
-#     serializer_class = EMPSerializer
-
-
 class apigetEMP(viewsets.ViewSet, generics.ListAPIView):
     
     serializer_class = EMPSerializer
@@ -130,4 +120,10 @@ class apigetEMP(viewsets.ViewSet, generics.ListAPIView):
         
         return emp
 
-    
+
+class apiProduct(viewsets.ModelViewSet):
+    queryset = Product.objects.filter(status = True)
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post','delete' ]
+

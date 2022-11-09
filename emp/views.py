@@ -9,7 +9,6 @@ from rest_framework import status, permissions, viewsets
 
 import requests
 import json
-from types import SimpleNamespace
 
 from .models import EMPs
 from .forms import CreateEMPPostForm
@@ -26,17 +25,17 @@ def getAllEMP(request):
     # emp = EMPs.objects.all()
 
     # context['emps']= emp
-    url_api= requests.get('https://apichicken.herokuapp.com/api/emp/abc/')
+    url_api= requests.get('https://apichicken.herokuapp.com/api/emp/')
     context = url_api.json()
 
-    return render(request, 'homepage/EMP.html', {
+    return render(request, 'homepage/emp/EMP.html', {
         'emps': context
         })
 
 
 def addEMP(request):
 
-    url_api= 'https://apichicken.herokuapp.com/api/emp/abc/'
+    url_api= 'https://apichicken.herokuapp.com/api/emp/'
     # context = url_api.json()
     data={}     
     
@@ -57,12 +56,12 @@ def addEMP(request):
     
     requests.post(url_api, data=data)
     
-    return render(request, 'homepage/addEMP.html')
+    return render(request, 'homepage/emp/addEMP.html')
 
 
 def delEMP(request, id):
 
-    url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
+    url_api= 'https://apichicken.herokuapp.com/api/emp/%s' %id
     # url_api= 'https://apichicken.herokuapp.com/api/delete/%s' %id
     # context = url_api.json()
     data={}     
@@ -91,7 +90,7 @@ def delEMP(request, id):
 def updateEMP(request, id):
 
     # url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
-    url_api= 'https://apichicken.herokuapp.com/api/update/%s' %id
+    url_api= 'https://apichicken.herokuapp.com/api/update/%s/' %id
     url_get='https://apichicken.herokuapp.com/api/%s/' %id
 
     info_emp= requests.get(url_get)
@@ -116,7 +115,7 @@ def updateEMP(request, id):
     
     requests.put(url_api, data=data)
 
-    return render(request, 'homepage/updateEMP.html', {
+    return render(request, 'homepage/emp/updateEMP.html', {
 
         'emp': context
         
