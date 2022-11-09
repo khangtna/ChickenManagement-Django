@@ -7,12 +7,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, viewsets
 
+from .forms import CreateProductPostForm
+
 import requests
 import json
 # Create your views here.
 
-def home(request):
-    return render(request, 'homepage/product/addProduct.html')
 
 
 def getAllProduct(request):
@@ -24,4 +24,28 @@ def getAllProduct(request):
     return render(request, 'homepage/product/Products.html', {
         'product': context
         })
+
+
+def addProduct(request):
+
+    url_api= 'https://apichicken.herokuapp.com/api/product/'
+    # url_api_category= 'https://apichicken.herokuapp.com/api/category/'
+    # context = url_api.json()
+    data={}     
+    
+    form= CreateProductPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name']= form.data.get('tenMonAn')
+    data['price']= form.data.get('giaMonAn')
+    data['price']= form.data.get('giaMonAn')
+    data['status']= form.data.get('status')
+  
+    print(data)
+    
+    requests.post(url_api, data=data)
+
+    return render(request, 'homepage/product/addProduct.html')
+
 

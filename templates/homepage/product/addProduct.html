@@ -133,7 +133,7 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Thêm món ăn mới</h1>
                             </div>
-                            <form class="user" action="">
+                            <form  action=""  method ="post">
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user" name="tenMonAn"
                                             placeholder="Tên món ăn">
@@ -142,34 +142,29 @@
                                      <input type="text" class="form-control form-control-user" name="giaMonAn"
                                             placeholder="Giá tiền">
                                 </div>
+                               
                                 <div class="form-group">
-                                    <label>Nhân Viên: </label>
-                                    <select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
+
                                     <label>Danh mục: </label>
+
+                                    {% for i in category %}
                                     <select>
-                                        <option>Gà</option>
-                                        <option>Cơm</option>
-                                        <option>Kem</option>
+                                        <option value="{{ i.id_category }}">{{ i.name }}</option>
+                                        
                                     </select>
                                 </div>
                                  <div class="form-group">
                                         <label>Trạng thái: </label>
                                         <ul>
-                                            <input type="radio" name="gt" value = "true" checked> true</input>
-                                            <input type="radio" name="gt" value = "false"> false</input>
+                                            <input type="radio" name="status" value = "True" checked> True</input>
+                                            <input type="radio" name="status" value = "False"> False</input>
                                         </ul>
                                 </div>
                                 
-                                <a href="/emp" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Thêm
-                                </a>
-                                <a href="/emp" class="btn bg-gray-200 btn-user btn-block">
+                                </button>
+                                <a href="/product" class="btn bg-gray-200 btn-user btn-block">
                                     Trở lại
                                 </a>
                             </form>

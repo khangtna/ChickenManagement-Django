@@ -12,7 +12,14 @@ from emp.models import EMPs
 from product.models import Products, Category
 from account.models import Account
 
-from .serializers import EMPSerializer, ProductSerializer, CategorySerializer, AccountSerializer
+from .serializers import (
+
+    EMPSerializer, 
+    ProductSerializer, 
+    CategorySerializer, 
+    AccountSerializer
+
+)
 
 
 @api_view(['GET', ])
@@ -125,6 +132,13 @@ class apiEMP(viewsets.ModelViewSet):
 class apiProduct(viewsets.ModelViewSet):
     queryset = Products.objects.filter(status = True)
     serializer_class = ProductSerializer
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post','delete' ]
+
+
+class apiCategory(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny,]
     http_method_names = ['patch','put','get','post','delete' ]
 
