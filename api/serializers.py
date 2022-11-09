@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from emp.models import EMPs
-from product.models import Product, Category
+from product.models import Products, Category
 
 
 class EMPSerializer(serializers.ModelSerializer):
@@ -21,7 +21,7 @@ class CategorySerializer(serializers.ModelSerializer):
 class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model= Product
+        model= Products
         fields = ('id_product', 'name', 'id_category', 'price', 'status' )
 
 
