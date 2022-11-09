@@ -9,7 +9,7 @@ from rest_framework.decorators import api_view, permission_classes, action
 
 
 from emp.models import EMPs
-from product.models import Product, Category
+from product.models import Products, Category
 
 from .serializers import EMPSerializer, ProductSerializer, CategorySerializer
 
@@ -122,7 +122,7 @@ class apiEMP(viewsets.ModelViewSet):
 
 
 class apiProduct(viewsets.ModelViewSet):
-    queryset = Product.objects.filter(status = True)
+    queryset = Products.objects.filter(status = True)
     serializer_class = ProductSerializer
     permission_classes = [permissions.AllowAny,]
     http_method_names = ['patch','put','get','post','delete' ]
