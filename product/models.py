@@ -4,6 +4,17 @@ from emp.models import EMPs
 
 
 # Create your models here.
+
+
+class Category(models.Model):
+
+    id_category = models.AutoField(primary_key=True)
+    name_category = models.CharField(max_length= 15)
+    
+    def __str__(self):
+        return str(self.id_category)
+
+
 class Product(models.Model):
 
     id_product = models.AutoField(primary_key=True)
@@ -18,11 +29,4 @@ class Product(models.Model):
 
 
 
-class Category(models.Model):
-
-    id_category = models.AutoField(primary_key=True)
-    name_category = models.CharField(max_length= 15)
-    
-    def __str__(self):
-        return str(self.id_category)
 
