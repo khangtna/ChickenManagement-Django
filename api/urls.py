@@ -8,6 +8,7 @@ from . import views
 router= routers.DefaultRouter()
 router.register('emp', views.apiEMP)
 router.register('product', views.apiProduct)
+router.register('account', views.apiAccount)
 
 # app_name= 'emp'
 

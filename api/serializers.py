@@ -2,6 +2,7 @@ from rest_framework import serializers
 
 from emp.models import EMPs
 from product.models import Products, Category
+from account.models import Account
 
 
 class EMPSerializer(serializers.ModelSerializer):
@@ -25,5 +26,10 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ('id_product', 'name',  'price', 'status' )
 
 
+class AccountSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model= Account
+        fields = ('id_account', 'name_account',  'id_per' )
 
 
