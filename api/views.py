@@ -155,6 +155,21 @@ def api_editProduct(request, id):
         return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(['POST', ])
+# @permission_classes([permissions.AllowAny])
+def api_addProduct(request):
+    
+    if request.method == 'POST':
+        
+        serilaizer = ProductSerializer(data= request.data)
+
+        if serilaizer.is_valid():
+            serilaizer.save()
+            return Response(serilaizer.data, status= status.HTTP_201_CREATED)
+
+        return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
+
+
 
 class apiCategory(viewsets.ModelViewSet):
     queryset = Category.objects.all()
