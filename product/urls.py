@@ -8,7 +8,7 @@ from . import views
 urlpatterns = [
 
     path('', views.getAllProduct, name='product'),
-    path('add/', views.home, name='addemp'),
+    path('add/', views.home, name='addproduct'),
     # path('del/<id>', views.delEMP, name='delemp'),
     # path('update/<id>', views.updateEMP, name='updateemp'),
    

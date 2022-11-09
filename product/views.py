@@ -17,6 +17,7 @@ def home(request):
 
 def getAllProduct(request):
 
+    context= {}
     url_api= requests.get('https://apichicken.herokuapp.com/api/product/')
     context = url_api.json()
 

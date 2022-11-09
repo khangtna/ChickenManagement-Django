@@ -10,7 +10,7 @@ class Product(models.Model):
     name = models.CharField(max_length= 15)
     price = models.FloatField(default= 0)
     # id_emp= models.ForeignKey(EMPs, on_delete=models.CASCADE)
-    category= models.ForeignKey('Category', on_delete=models.CASCADE)
+    id_category= models.ForeignKey('Category', on_delete=models.CASCADE)
     status= models.BooleanField(default= True)
 
     def __str__(self):
