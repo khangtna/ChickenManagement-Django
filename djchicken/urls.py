@@ -24,6 +24,7 @@ urlpatterns = [
     # path('', include('core.urls')),
     path('emp/', include('emp.urls')),
     path('product/', include('product.urls')),
+    path('account/', include('account.urls')),
 
     # api
     path('api/', include('api.urls')),
