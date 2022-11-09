@@ -108,6 +108,14 @@ def api_createEmp(request):
         return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
 
 
+class apiProduct(viewsets.ModelViewSet):
+    queryset = Products.objects.filter(status = True)
+    serializer_class = ProductSerializer
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post','delete' ]
+
+
+
 class apiEMP(viewsets.ModelViewSet):
     queryset = EMPs.objects.filter(status = True)
     serializer_class = EMPSerializer
@@ -129,11 +137,6 @@ class apiEMP(viewsets.ModelViewSet):
 #         return emp
 
 
-class apiProduct(viewsets.ModelViewSet):
-    queryset = Products.objects.filter(status = True)
-    serializer_class = ProductSerializer
-    permission_classes = [permissions.AllowAny,]
-    http_method_names = ['patch','put','get','post','delete' ]
 
 @api_view(['PUT', ])
 def api_editProduct(request, id):
@@ -151,21 +154,6 @@ def api_editProduct(request, id):
             serilaizer.save()
             data['success']= 'Cập nhật thành công!'
             return Response(data= data)
-
-        return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
-
-
-@api_view(['POST', ])
-# @permission_classes([permissions.AllowAny])
-def api_addProduct(request):
-    
-    if request.method == 'POST':
-        
-        serilaizer = ProductSerializer(data= request.data)
-
-        if serilaizer.is_valid():
-            serilaizer.save()
-            return Response(serilaizer.data, status= status.HTTP_201_CREATED)
 
         return Response(serilaizer.errors, status= status.HTTP_400_BAD_REQUEST)
 
