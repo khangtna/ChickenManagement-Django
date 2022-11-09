@@ -107,18 +107,18 @@ class apiEMP(viewsets.ModelViewSet):
     http_method_names = ['patch','put','get','post','delete' ]
 
 
-class apigetEMP(viewsets.ViewSet, generics.ListAPIView):
+# class apigetEMP(viewsets.ViewSet, generics.ListAPIView):
     
-    serializer_class = EMPSerializer
+#     serializer_class = EMPSerializer
     
-    def get_queryset(self):
-        emp = EMPs.objects.filter(status = True)
+#     def get_queryset(self):
+#         emp = EMPs.objects.filter(status = True)
 
-        id= self.request.query_params.get('id')
-        if id is not None:
-            emp= emp.filter(id__contains=id)
+#         id= self.request.query_params.get('id')
+#         if id is not None:
+#             emp= emp.filter(id__contains=id)
         
-        return emp
+#         return emp
 
 
 class apiProduct(viewsets.ModelViewSet):
