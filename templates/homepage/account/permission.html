@@ -130,16 +130,16 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Quản lý tài khoản</h1>
-                    <p class="mb-4">Bạn muốn thêm 1 tài khoản mới? Nhấn vào đây: 
+                    <h1 class="h3 mb-2 text-gray-800">Quản lý quyền</h1>
+                    <p class="mb-4">Bạn muốn thêm 1 quyền mới? Nhấn vào đây: 
                         <a href="add/" class="btn btn-success btn-circle">
                             <i class="fas fa-check"></i>
 
                         </a>
                     </p>
-                    <p class="mb-4">Bạn muốn xem các phân quyền? Nhấn vào đây: 
-                        <a href="add/" class="btn btn-primary btn-user ">
-                            Phân quyền
+                    <p class="mb-4">Quay lại 
+                        <a href="account/" class="btn btn-primary btn-user ">
+                            Tài khoản
 
                         </a>
                     </p>
@@ -148,7 +148,7 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tài khoản</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Quyền</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -156,9 +156,7 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Tên đăng nhập</th>
-                                            <th>Mật khẩu</th>
-                                            <th>Quyền</th>
+                                            <th>Quyền</th>                                   
                                             
                                             <th><b><i>Sửa</i></b></th>
                                             <th><b><i>Xóa</i></b></th>
@@ -166,21 +164,19 @@
                                     </thead>
                                     
                                     <tbody>
-                                        {% for item in account %}
+                                        {% for item in permission %}
                                         <tr>
-                                            <td>{{ item.id_account }}</td>
-                                            <td>{{ item.name_account }}</td>
-                                            <td>{{ item.password }}</td>
                                             <td>{{ item.id_per }}</td>
+                                            <td>{{ item.name_per }}</td>
                                             
                                             <td>
-                                                <a href="update/{{ item.id_account }}" class="btn btn-info btn-circle btn-sm">
+                                                <a href="update/{{ item.id_per }}" class="btn btn-info btn-circle btn-sm">
                                                     <i class="fas fa-info-circle"></i>
                                                 </a>
                                             </td>
                                             <td>       
                                                             
-                                                <a href="del/{{ item.id_account }}" class="btn btn-danger btn-circle btn-sm" >
+                                                <a href="del/{{ item.id_per }}" class="btn btn-danger btn-circle btn-sm" >
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                                  
