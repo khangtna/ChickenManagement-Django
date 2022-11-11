@@ -2,7 +2,7 @@ from rest_framework import serializers
 
 from emp.models import EMPs
 from product.models import Products, Category
-from account.models import Account
+from account.models import Account, Permission
 
 
 class EMPSerializer(serializers.ModelSerializer):
@@ -43,5 +43,12 @@ class AccountSerializer(serializers.ModelSerializer):
     #     user.save()
 
     #     return user
+
+class PermissionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model= Permission
+        fields = ('id_per', 'name_per' )
+
 
 

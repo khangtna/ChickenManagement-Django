@@ -6,12 +6,12 @@ from . import views
 
 urlpatterns = [
 
-    # path('', views.getAllEMP, name='emp'),
+    path('', views.getAllAccount, name='account'),
     path('add/', views.addAcc, name='addacc'),
     # path('del/<id>', views.delEMP, name='delemp'),
     # path('update/<id>', views.updateEMP, name='updateemp'),
    
-    path('login/', views.login, name='login'),
+    # path('login/', views.login, name='login'),
 
     
 ]

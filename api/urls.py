@@ -10,6 +10,7 @@ router.register('emp', views.apiEMP)
 router.register('category', views.apiCategory)
 router.register('product', views.apiProduct)
 router.register('account', views.apiAccount)
+router.register('permission', views.apiPermission)
 
 # app_name= 'emp'
 

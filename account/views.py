@@ -12,6 +12,8 @@ from .forms import AccountPostForm
 
 # Create your views here.
 
+def loginHome(request):
+    return render(request, 'homepage/login.html')
 
 def login(request):
 
@@ -19,8 +21,8 @@ def login(request):
     account = url_api_account.json()
 
     admin= account[0]
-    print(admin['name_account'])
-    print(admin['password'])
+    username = admin['name_account']
+    password = admin['password']
     
 
     form= AccountPostForm(request.POST or None)
@@ -28,12 +30,17 @@ def login(request):
         form.save()
 
     username_ = form.data.get('username')
-    # print(username_)
     password_ = form.data.get('pasword')
-    # print(password_)
+
+    # admin
+    if username_ == username and password_ == password:
+        return redirect('/emp')
+    
     
     return render(request, 'homepage/login.html')
 
+
+# account
 
 def getAllAccount(request):
 
@@ -47,9 +54,28 @@ def getAllAccount(request):
 
 
 
-
-
 def addAcc(request):
-    return render(request, 'homepage/account/addACC.html')
+
+    url_api_per= requests.get('https://apichicken.herokuapp.com/api/category/')
+    per = url_api_per.json()
+
+    url_api_add= 'https://apichicken.herokuapp.com/api/account/'
+    data={}     
+    
+    form= AccountPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_account']= form.data.get('tenDN')
+    data['password']= form.data.get('matKhau')
+    data['id_per']= form.data.get('per')
+  
+    # print(data)
+    
+    requests.post(url_api_add, data=data)
+
+    return render(request, 'homepage/account/addACC.html',{
+        'per': per
+    })
 
 

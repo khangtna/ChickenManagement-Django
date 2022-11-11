@@ -10,14 +10,15 @@ from rest_framework.decorators import api_view, permission_classes, action
 
 from emp.models import EMPs
 from product.models import Products, Category
-from account.models import Account
+from account.models import Account, Permission
 
 from .serializers import (
 
     EMPSerializer, 
     ProductSerializer, 
     CategorySerializer, 
-    AccountSerializer
+    AccountSerializer,
+    PermissionSerializer
 
 )
 
@@ -148,4 +149,12 @@ class apiAccount(viewsets.ModelViewSet):
     serializer_class = AccountSerializer
     permission_classes = [permissions.AllowAny,]
     http_method_names = ['patch','put','get','post','delete' ]
+
+
+class apiPermission(viewsets.ModelViewSet):
+    queryset = Permission.objects.all()
+    serializer_class = PermissionSerializer
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post','delete' ]
+
 
