@@ -8,8 +8,8 @@ urlpatterns = [
 
     path('', views.getAllAccount, name='account'),
     path('add/', views.addAcc, name='addacc'),
-    # path('del/<id>', views.delEMP, name='delemp'),
-    # path('update/<id>', views.updateEMP, name='updateemp'),
+    path('del/<id>', views.delAcc, name='delacc'),
+    path('update/<id>', views.editAcc, name='editacc'),
    
     # path('login/', views.login, name='login'),
 

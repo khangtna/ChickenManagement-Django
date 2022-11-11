@@ -133,13 +133,15 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Tạo tài khoản mới</h1>
                             </div>
-                            <form class="user" action="">
+                            <form action="{% url 'addacc' %}" method="post" >
+
+                                {% csrf_token %}
                                 <div class="form-group ">
                                     <input type="text" class="form-control form-control-user" name="tenDN"
                                         placeholder="Tên Đăng nhập">
                                 </div>
                                 <div class="form-group ">
-                                    <input type="text" class="form-control form-control-user" name="matKhau"
+                                    <input type="password" class="form-control form-control-user" name="matKhau"
                                         placeholder="Mật khẩu">
                                 </div>
                                     <div class="form-group ">

@@ -133,27 +133,31 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Chỉnh sửa tài khoản</h1>
                             </div>
-                            <form class="user" action="">
+                            <form action="{% url 'editacc' acc.id_account %}" method="post" >
+
+                                {% csrf_token %}
                                 <div class="form-group ">
                                     <input type="text" class="form-control form-control-user" name="tenDN"
-                                        placeholder="Tên Đăng nhập">
+                                        placeholder="Tên Đăng nhập" value="{{ acc.name_account }}">
                                 </div>
                                 <div class="form-group ">
-                                    <input type="text" class="form-control form-control-user" name="matKhau"
-                                        placeholder="Mật khẩu">
+                                    <input type="password" class="form-control form-control-user" name="matKhau"
+                                        placeholder="Mật khẩu" value="{{ acc.password }}">
                                 </div>
                                     <div class="form-group ">
                                         <label>Quyền: </label>
-                                        <select>
-                                            <option>admin</option>
-                                            <option>Nhân viên</option>
-                                        </select>
+
+                                        <select name="per">
+                                            {% for i in per %}
+                                                <option value="{{ i.id_per }}">{{ i.name_per }}</option>
+                                            {% endfor %}
+                                            </select>
                                     </div>
 
-                                <a href="/emp" class="btn btn-primary btn-user btn-block">
-                                    Lưu
-                                </a>
-                                <a href="/emp" class="btn bg-gray-200 btn-user btn-block">
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Sửa
+                                    </button>
+                                <a href="/account" class="btn bg-gray-200 btn-user btn-block">
                                     Trở lại
                                 </a>
                               

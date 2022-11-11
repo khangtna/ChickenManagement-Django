@@ -56,7 +56,7 @@ def getAllAccount(request):
 
 def addAcc(request):
 
-    url_api_per= requests.get('https://apichicken.herokuapp.com/api/category/')
+    url_api_per= requests.get('https://apichicken.herokuapp.com/api/permission/')
     per = url_api_per.json()
 
     url_api_add= 'https://apichicken.herokuapp.com/api/account/'
@@ -78,4 +78,60 @@ def addAcc(request):
         'per': per
     })
 
+
+def delAcc(request, id):
+
+    url_api= 'https://apichicken.herokuapp.com/api/account/%s' %id
+
+    data={}     
+
+    form= AccountPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_account']= form.data.get('tenDN')
+    data['password']= form.data.get('matKhau')
+    data['id_per']= form.data.get('per')
+
+    # print(data)
+    
+    requests.delete(url_api, data=data)
+
+    return redirect('/account')
+
+
+
+def editAcc(request, id):
+
+    url_api_edit= 'https://apichicken.herokuapp.com/api/account/%s/' %id
+
+    # url_api= 'https://apichicken.herokuapp.com/api/account/%s/' %id
+
+    url_api_per= requests.get('https://apichicken.herokuapp.com/api/permission/')
+    per = url_api_per.json()
+
+    url_api_get= requests.get(url_api_edit)
+    context = url_api_get.json()
+
+    data={}     
+
+    form= AccountPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_account']= form.data.get('tenDN')
+    data['password']= form.data.get('matKhau')
+    data['id_per']= form.data.get('per')
+
+    print(data)
+    
+    # requests.put(url_api_edit, data=data)
+    requests.patch(url_api_edit, data=data)
+
+    return render(request, 'homepage/account/editACC.html', {
+
+        'per': per,
+        'acc': context
+        
+        })
 
