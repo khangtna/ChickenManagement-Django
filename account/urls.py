@@ -13,5 +13,7 @@ urlpatterns = [
    
     # path('login/', views.login, name='login'),
 
+    path('', views.getAllPermission, name='permission'),
+
     
 ]

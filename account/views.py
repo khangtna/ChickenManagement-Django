@@ -136,3 +136,14 @@ def editAcc(request, id):
         
         })
 
+
+def getAllPermission(request):
+
+    context= {}
+    url_api= requests.get('https://apichicken.herokuapp.com/api/permission/')
+    context = url_api.json()
+
+    return render(request, 'homepage/account/permission.html', {
+        'permission': context
+        })
+
