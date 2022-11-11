@@ -11,6 +11,7 @@ urlpatterns = [
     # path('del/<id>', views.delEMP, name='delemp'),
     # path('update/<id>', views.updateEMP, name='updateemp'),
    
+    path('login/', views.login, name='login'),
 
     
 ]

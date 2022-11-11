@@ -30,6 +30,18 @@ class AccountSerializer(serializers.ModelSerializer):
 
     class Meta:
         model= Account
-        fields = ('id_account', 'name_account',  'id_per' )
+        fields = ('id_account', 'name_account', 'password' ,'id_per' )
+
+        extra_kwargs= {
+        'password': {'write_only': 'true'}
+
+        }
+
+    def create(self, validated_data):
+        user= Account(**validated_data)
+        user.set_password(user.password)
+        user.save()
+
+        return user
 
 

@@ -7,6 +7,6 @@ class CreateProductPostForm(forms.ModelForm):
 
 	class Meta:
 		model = Products
-		fields = {'id_product','name', 'id_category','price', 'status' }
+		fields = {'name', 'id_category','price', 'status' }
 		
 		

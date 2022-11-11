@@ -25,6 +25,6 @@ urlpatterns = [
     # path('delete/<id>/', views.api_delEmp, name='delete'),
     
     # path('product/add', views.api_addProduct, name='api-addproduct'),
-    path('product/edit/<id>/', views.api_editProduct, name='edit-product'),
+    # path('product/edit/<id>/', views.api_editProduct, name='edit-product'),
 
 ]

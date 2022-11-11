@@ -33,7 +33,7 @@ def addProduct(request):
     context = url_api_category.json()
 
     # url_api= 'https://apichicken.herokuapp.com/api/product/'
-    url_api= 'https://apichicken.herokuapp.com/api/product/add'
+    url_api_add= 'https://apichicken.herokuapp.com/api/product/add/'
     data={}     
     
     form= CreateProductPostForm(request.POST or None)
@@ -45,9 +45,9 @@ def addProduct(request):
     data['price']= form.data.get('giaMonAn')
     data['status']= form.data.get('status')
   
-    print(data)
+    # print(data)
     
-    requests.post(url_api, data=data)
+    requests.post(url_api_add, data=data)
 
     return render(request, 'homepage/product/addProduct.html', {
         "category": context
@@ -79,7 +79,9 @@ def delProduct(request, id):
 
 def editProduct(request, id):
 
-    url_api_edit= 'https://apichicken.herokuapp.com/api/product/edit/%s/' %id
+    # url_api_edit= 'https://apichicken.herokuapp.com/api/product/edit/%s/' %id
+    url_api_edit= 'https://apichicken.herokuapp.com/api/product/%s/' %id
+
     url_api= 'https://apichicken.herokuapp.com/api/product/%s/' %id
 
     url_api_category= requests.get('https://apichicken.herokuapp.com/api/category/')
@@ -101,7 +103,8 @@ def editProduct(request, id):
 
     print(data)
     
-    requests.put(url_api_edit, data=data)
+    # requests.put(url_api_edit, data=data)
+    requests.patch(url_api_edit, data=data)
 
     return render(request, 'homepage/product/editProduct.html', {
 
@@ -109,4 +112,85 @@ def editProduct(request, id):
         'category': category
         
         })
+
+
+# Category
+
+def getAllCategory(request):
+
+    context= {}
+    url_api= requests.get('https://apichicken.herokuapp.com/api/category/')
+    context = url_api.json()
+
+    return render(request, 'homepage/product/Category.html', {
+        'category': context
+        })
+
+
+def addCategory(request):
+
+    url_api_add= 'https://apichicken.herokuapp.com/api/category/'
+    data={}     
+    
+    form= CreateProductPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_category']= form.data.get('tenDM')
+  
+    # print(data)
+    
+    requests.post(url_api_add, data=data)
+
+    return render(request, 'homepage/product/addCategory.html')
+
+
+def delCategory(request, id):
+
+    url_api= 'https://apichicken.herokuapp.com/api/category/%s' %id
+
+    data={}     
+
+    form= CreateProductPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['id_category']= form.data.get('tenDN')
+
+    # print(data)
+    
+    requests.delete(url_api, data=data)
+
+    return redirect('/product/category')
+
+
+def editCategory(request, id):
+
+    # url_api_edit= 'https://apichicken.herokuapp.com/api/product/edit/%s/' %id
+    # url_api_edit= 'https://apichicken.herokuapp.com/api/category/%s/' %id
+
+    url_api= 'https://apichicken.herokuapp.com/api/category/%s/' %id
+
+
+    info= requests.get(url_api)
+    context = info.json()
+
+    data={}     
+
+    form= CreateProductPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_category']= form.data.get('tenDM')
+
+    print(data)
+    
+    # requests.put(url_api_edit, data=data)
+    requests.patch(url_api, data=data)
+
+    return render(request, 'homepage/product/editCategory.html', {
+        'category': context
+        
+        })
+
 

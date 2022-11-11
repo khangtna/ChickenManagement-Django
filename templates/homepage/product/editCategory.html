@@ -17,7 +17,6 @@
 
 {% endblock %}
 
-
 {% block content1 %}
 <body id="page-top">
 
@@ -25,8 +24,9 @@
     <div id="wrapper">
 
 {% endblock %}
-        
-{% block content2 %}
+
+    {% block content2 %}
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -37,11 +37,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                     <!-- Topbar Search -->
                     <form
@@ -84,9 +82,9 @@
                             </div>
                         </li>
 
-                        
+                       
 
-                        
+                      
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -127,68 +125,32 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="row justify-content-center">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Quản lý tài khoản</h1>
-                    <p class="mb-4">Bạn muốn thêm 1 tài khoản mới? Nhấn vào đây: 
-                        <a href="add/" class="btn btn-success btn-circle">
-                            <i class="fas fa-check"></i>
-
-                        </a>
-                    </p>
-                    
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tài khoản</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Tên đăng nhập</th>
-                                            <th>Mật khẩu</th>
-                                            <th>Quyền</th>
-                                            
-                                            <th><b><i>Sửa</i></b></th>
-                                            <th><b><i>Xóa</i></b></th>
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                        {% for item in account %}
-                                        <tr>
-                                            <td>{{ item.id_account }}</td>
-                                            <td>{{ item.name_account }}</td>
-                                            <td>{{ item.id_per }}</td>
-                                            
-                                            <td>
-                                                <a href="update/{{ item.id }}" class="btn btn-info btn-circle btn-sm">
-                                                    <i class="fas fa-info-circle"></i>
-                                                </a>
-                                            </td>
-                                            <td>       
-                                                            
-                                                <a href="del/{{ item.id }}" class="btn btn-danger btn-circle btn-sm" >
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                                 
-                                            </td>
-                                            
-                                        </tr>
-                                        {% endfor %}
-                                       
-                                    </tbody>
-                                </table>
+                    <div class="col-lg-5">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Cập nhật danh mục</h1>
                             </div>
+                            <form action="{% url 'editcategory' category.id_category %}" method="post" >
+
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-user" name="tenDM"
+                                            placeholder="Tên danh mục" value="{{ category.name_category }}">
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Sửa
+                                </button>
+                                <a href="/product/category" class="btn bg-gray-200 btn-user btn-block">
+                                    Trở lại
+                                </a>
+                            </form>
                         </div>
-                        
                     </div>
 
-                
                 </div>
                 <!-- /.container-fluid -->
 
@@ -235,8 +197,8 @@
             </div>
         </div>
     </div>
+    {% endblock %}
 
-{% endblock %}
 
 {% block jsblock %}
 
