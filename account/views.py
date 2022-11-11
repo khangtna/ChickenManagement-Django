@@ -7,8 +7,32 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, viewsets
 
 import requests
+from .forms import AccountPostForm
+
 
 # Create your views here.
+
+
+def login(request):
+
+    url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
+    account = url_api_account.json()
+
+    admin= account[0]
+    print(admin['name_account'])
+    print(admin['password'])
+    
+
+    form= AccountPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    username_ = form.data.get('username')
+    # print(username_)
+    password_ = form.data.get('pasword')
+    # print(password_)
+    
+    return render(request, 'homepage/login.html')
 
 
 def getAllAccount(request):
@@ -22,9 +46,6 @@ def getAllAccount(request):
         })
 
 
-def login(request):
-    
-    return render(request, 'homepage/login.html')
 
 
 
