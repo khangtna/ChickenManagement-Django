@@ -35,6 +35,9 @@ def getAllEMP(request):
 
 def addEMP(request):
 
+    url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
+    account_ = url_api_account.json()
+
     url_api= 'https://apichicken.herokuapp.com/api/emp/'
     # context = url_api.json()
     data={}     
@@ -56,7 +59,11 @@ def addEMP(request):
     
     requests.post(url_api, data=data)
     
-    return render(request, 'homepage/emp/addEMP.html')
+    return render(request, 'homepage/emp/addEMP.html', {
+
+        'account':account_
+
+    })
 
 
 def delEMP(request, id):
@@ -89,7 +96,9 @@ def delEMP(request, id):
 
 def updateEMP(request, id):
 
-    # url_api= 'https://apichicken.herokuapp.com/api/emp/abc/%s' %id
+    url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
+    account_ = url_api_account.json()
+
     url_api= 'https://apichicken.herokuapp.com/api/update/%s/' %id
     url_get='https://apichicken.herokuapp.com/api/%s/' %id
 
@@ -117,7 +126,8 @@ def updateEMP(request, id):
 
     return render(request, 'homepage/emp/updateEMP.html', {
 
-        'emp': context
+        'emp': context,
+        'account': account_
         
         })
 

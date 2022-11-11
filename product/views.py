@@ -33,7 +33,7 @@ def addProduct(request):
     context = url_api_category.json()
 
     # url_api= 'https://apichicken.herokuapp.com/api/product/'
-    url_api_add= 'https://apichicken.herokuapp.com/api/product/add/'
+    url_api_add= 'https://apichicken.herokuapp.com/api/product/'
     data={}     
     
     form= CreateProductPostForm(request.POST or None)

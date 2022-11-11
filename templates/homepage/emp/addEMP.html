@@ -182,6 +182,17 @@
                                     </div>
                                 </div>
                                 
+                                <div class="form-group ">
+                                    <label>Quyền: </label>
+
+                                    <select name="account">
+                                    {% for i in account %}
+                                        <option value="{{ i.id_account }}">{{ i.name_account }}</option>
+                                    {% endfor %}
+                                    </select>
+
+                                </div>
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0" name="gender">
                                     <label>Trạng thái: </label>

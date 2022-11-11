@@ -2,7 +2,7 @@ from email.policy import default
 from random import choices
 
 from django.db import models
-
+from account.models import Account
 
 # Create your models here.
 
@@ -22,6 +22,7 @@ class EMPs(models.Model):
     numberPhone= models.IntegerField()
     address= models.CharField(max_length= 30)
     salary= models.FloatField(default= 0)
+    id_account= models.ForeignKey(Account, on_delete=models.SET_NULL, blank=True, null=True)
     status= models.BooleanField(default= True)
 
     def __str__(self):

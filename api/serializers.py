@@ -9,7 +9,7 @@ class EMPSerializer(serializers.ModelSerializer):
 
     class Meta:
         model= EMPs
-        fields = ('id', 'l_name', 'f_name', 'gender', 'date','numberPhone','address', 'salary','status' )
+        fields = ('id', 'l_name', 'f_name', 'gender', 'date','numberPhone','address', 'salary', 'id_account' ,'status' )
 
 
 class CategorySerializer(serializers.ModelSerializer):

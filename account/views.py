@@ -17,12 +17,13 @@ def loginHome(request):
 
 def login(request):
 
-    url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
-    account = url_api_account.json()
+    url_api_account= requests.get('https://apichicken.herokuapp.com/api/permission/')
+    permission_ = url_api_account.json()
 
-    admin= account[0]
-    username = admin['name_account']
-    password = admin['password']
+    admin= permission_[0]
+    print(admin)
+    # username = admin['name_account']
+    # password = admin['password']
     
 
     form= AccountPostForm(request.POST or None)
@@ -33,8 +34,8 @@ def login(request):
     password_ = form.data.get('pasword')
 
     # admin
-    if username_ == username and password_ == password:
-        return redirect('/emp')
+    # if username_ == username and password_ == password:
+    #     return redirect('/emp')
     
     
     return render(request, 'homepage/login.html')
