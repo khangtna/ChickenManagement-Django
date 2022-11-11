@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from account.views import logoutUser
+
 
 urlpatterns = [
     path('admin/', admin.site.urls), 
@@ -25,6 +27,8 @@ urlpatterns = [
     path('emp/', include('emp.urls')),
     path('product/', include('product.urls')),
     path('account/', include('account.urls')),
+
+    path('logout/', logoutUser, name='logout'),
 
     # api
     path('api/', include('api.urls')),

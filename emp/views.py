@@ -2,6 +2,7 @@ from argparse import Action
 from urllib import response
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.contrib import messages
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -45,6 +46,8 @@ def addEMP(request):
     form= CreateEMPPostForm(request.POST or None)
     if form.is_valid():
         form.save()
+        
+        
 
     data['l_name']= form.data.get('l_name')
     data['f_name']= form.data.get('f_name')
@@ -53,11 +56,15 @@ def addEMP(request):
     data['address']= form.data.get('address')
     data['numberPhone']= form.data.get('numberPhone')
     data['salary']= form.data.get('salary')
+    data['id_account']= form.data.get('account')
     data['status']= form.data.get('status')
   
     # print(data)
-    
+
+
     requests.post(url_api, data=data)
+
+
     
     return render(request, 'homepage/emp/addEMP.html', {
 
@@ -84,6 +91,7 @@ def delEMP(request, id):
     data['address']= form.data.get('address')
     data['numberPhone']= form.data.get('numberPhone')
     data['salary']= form.data.get('salary')
+    data['id_account']= form.data.get('account')
     data['status']= form.data.get('status')
 
     # print(data)
@@ -118,6 +126,7 @@ def updateEMP(request, id):
     data['address']= form.data.get('address')
     data['numberPhone']= form.data.get('numberPhone')
     data['salary']= form.data.get('salary')
+    data['id_account']= form.data.get('account')
     data['status']= form.data.get('status')
 
     print(data)

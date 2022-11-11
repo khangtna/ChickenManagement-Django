@@ -73,31 +73,19 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Chỉnh sửa tài khoản</h1>
                             </div>
-                            <form action="{% url 'editacc' acc.id_account %}" method="post" >
+                            <form action="{% url 'editper' per.id_per %}" method="post" >
 
                                 {% csrf_token %}
                                 <div class="form-group ">
-                                    <input type="text" class="form-control form-control-user" name="tenDN"
-                                        placeholder="Tên Đăng nhập" value="{{ acc.name_account }}">
+                                    <input type="text" class="form-control form-control-user" name="nameper"
+                                        placeholder="Quyền" value="{{ per.name_per }}">
                                 </div>
-                                <div class="form-group ">
-                                    <input type="password" class="form-control form-control-user" name="matKhau"
-                                        placeholder="Mật khẩu" value="{{ acc.password }}">
-                                </div>
-                                    <div class="form-group ">
-                                        <label>Quyền: </label>
-
-                                        <select name="per">
-                                            {% for i in per %}
-                                                <option value="{{ i.id_per }}">{{ i.name_per }}</option>
-                                            {% endfor %}
-                                            </select>
-                                    </div>
+                                
 
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Sửa
                                     </button>
-                                <a href="/account" class="btn bg-gray-200 btn-user btn-block">
+                                <a href="/account/permission" class="btn bg-gray-200 btn-user btn-block">
                                     Trở lại
                                 </a>
                               

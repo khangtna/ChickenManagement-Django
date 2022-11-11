@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, decorators
+from django.contrib.auth import authenticate, login, logout, decorators
+from django.contrib.auth import login as auth_login
+from django.contrib import messages
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -17,32 +19,50 @@ def loginHome(request):
 
 def login(request):
 
-    url_api_account= requests.get('https://apichicken.herokuapp.com/api/permission/')
-    permission_ = url_api_account.json()
+    # url_api_permission= requests.get('https://apichicken.herokuapp.com/api/permission/')
+    # permission_ = url_api_permission.json()
 
-    admin= permission_[0]
-    print(admin)
+    # url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
+    # account_ = url_api_account.json()
+
+    # admin= permission_[0]
+    # print(admin)
+    # admin1= account_[0]
+    # print(admin1)
     # username = admin['name_account']
     # password = admin['password']
     
 
-    form= AccountPostForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    # form= AccountPostForm(request.POST or None)
+    # if form.is_valid():
+    #     form.save()
 
-    username_ = form.data.get('username')
-    password_ = form.data.get('pasword')
+    # username_ = form.data.get('username')
+    # password_ = form.data.get('pasword')
 
-    # admin
-    # if username_ == username and password_ == password:
-    #     return redirect('/emp')
+    if request.method == 'POST':
+        username_= request.POST.get('username')
+        password_= request.POST.get('password')
+
+        user = authenticate(request, username= username_, password= password_)
+
+        if user is not None:
+            auth_login(request, user)
+            return redirect('/emp')
+        else:
+            messages.info(request, 'Tài khoản hoặc mật khẩu không đúng!')
     
     
     return render(request, 'homepage/login.html')
 
 
-# account
+def logoutUser(request):
+    logout(request)
+    return redirect('/')
 
+
+
+# account
 def getAllAccount(request):
 
     context= {}
@@ -146,4 +166,51 @@ def getAllPermission(request):
     return render(request, 'homepage/account/permission.html', {
         'permission': context
         })
+
+
+def addPer(request):
+
+    url_api_add= 'https://apichicken.herokuapp.com/api/permission/'
+    data={}     
+    
+    form= AccountPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_per']= form.data.get('nameper')
+  
+    # print(data)
+    
+    requests.post(url_api_add, data=data)
+
+    return render(request, 'homepage/account/addPer.html')
+
+
+def editPer(request, id):
+
+    url_api_edit= 'https://apichicken.herokuapp.com/api/permission/%s/' %id
+
+    url_api_per= requests.get(url_api_edit)
+    per = url_api_per.json()
+
+    data={}     
+
+    form= AccountPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['name_per']= form.data.get('nameper')
+
+    print(data)
+    
+    # requests.put(url_api_edit, data=data)
+    requests.patch(url_api_edit, data=data)
+
+    return render(request, 'homepage/account/editPer.html', {
+
+        'per': per
+        
+        })
+
+
 

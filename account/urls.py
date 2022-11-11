@@ -14,6 +14,8 @@ urlpatterns = [
     # path('login/', views.login, name='login'),
 
     path('permission/', views.getAllPermission, name='permission'),
+    path('permission/add/', views.addPer, name='addper'),
+    path('permission/update/<id>', views.editPer, name='editper'),
 
     
 ]
