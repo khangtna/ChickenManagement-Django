@@ -122,13 +122,8 @@
                                 </div>
                                 
                                 <div class="form-group ">
-                                    <label>Quyền: </label>
-
-                                    <select name="account">
-                                    {% for i in account %}
-                                        <option value="{{ i.id_account }}">{{ i.name_account }}</option>
-                                    {% endfor %}
-                                    </select>
+                                    <input type="email" class="form-control form-control-user" name="email"
+                                        placeholder="Email">
 
                                 </div>
 

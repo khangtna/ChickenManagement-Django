@@ -83,6 +83,10 @@
                                     <input type="password" class="form-control form-control-user" name="matKhau"
                                         placeholder="Mật khẩu">
                                 </div>
+                                <div class="form-group ">
+                                    <input type="password" class="form-control form-control-user" name="matKhau2"
+                                        placeholder="Nhập lại mật khẩu">
+                                </div>
                                     <div class="form-group ">
                                         <input type="email" class="form-control form-control-user" name="email"
                                         placeholder="Email">
@@ -97,6 +101,12 @@
                                 </a>
 
                             </form>
+
+                            {% for message in messages %}
+
+                                        <p id="messages">{{ message }}</p>
+
+                                    {% endfor %}
                         </div>
                     </div>
 

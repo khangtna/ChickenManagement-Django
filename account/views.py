@@ -28,7 +28,7 @@ def login(request):
 
 
 
-    url_api_account= 'http://127.0.0.1:8000/api/login/'
+    url_api_account= 'https://apichicken.herokuapp.com/api/login/'
 
     data={}
     context={}
@@ -100,9 +100,16 @@ def addAcc(request):
     if form.is_valid():
         form.save()
 
-    data['username']= form.data.get('tenDN')
-    data['password']= form.data.get('matKhau')
-    data['email']= form.data.get('email')
+    password = form.data.get('matKhau')
+    password2 = request.POST.get('matKhau2')
+
+    if password != password2:
+        messages.error(request, "Mật không không khớp!")
+    else:
+
+        data['username']= form.data.get('tenDN')
+        data['password']= form.data.get('matKhau')
+        data['email']= form.data.get('email')
   
     # print(data)
     

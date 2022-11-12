@@ -56,7 +56,7 @@ def addEMP(request):
     data['address']= form.data.get('address')
     data['numberPhone']= form.data.get('numberPhone')
     data['salary']= form.data.get('salary')
-    data['id_account']= form.data.get('account')
+    data['email']= form.data.get('email')
     data['status']= form.data.get('status')
   
     # print(data)
@@ -91,7 +91,7 @@ def delEMP(request, id):
     data['address']= form.data.get('address')
     data['numberPhone']= form.data.get('numberPhone')
     data['salary']= form.data.get('salary')
-    data['id_account']= form.data.get('account')
+    data['email']= form.data.get('email')
     data['status']= form.data.get('status')
 
     # print(data)
@@ -126,7 +126,7 @@ def updateEMP(request, id):
     data['address']= form.data.get('address')
     data['numberPhone']= form.data.get('numberPhone')
     data['salary']= form.data.get('salary')
-    data['id_account']= form.data.get('account')
+    data['email']= form.data.get('email')
     data['status']= form.data.get('status')
 
     print(data)
