@@ -77,12 +77,12 @@
 
                         </a>
                     </p>
-                    <p class="mb-4">Bạn muốn xem các phân quyền? Nhấn vào đây: 
+                    <!-- <p class="mb-4">Bạn muốn xem các phân quyền? Nhấn vào đây: 
                         <a href="permission/" class="btn btn-primary btn-user ">
                             Phân quyền
 
                         </a>
-                    </p>
+                    </p> -->
                     
 
                     <!-- DataTales Example -->
@@ -97,34 +97,34 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Tên đăng nhập</th>
-                                            <th>Mật khẩu</th>
-                                            <th>Quyền</th>
+                                            <th>Email</th>
                                             
-                                            <th><b><i>Sửa</i></b></th>
-                                            <!-- <th><b><i>Xóa</i></b></th> -->
+                                            
+                                            <!-- <th><b><i>Sửa</i></b></th> -->
+                                            <th><b><i>Xóa</i></b></th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>
                                         {% for item in account %}
                                         <tr>
-                                            <td>{{ item.id_account }}</td>
-                                            <td>{{ item.name_account }}</td>
-                                            <td>{{ item.password }}</td>
-                                            <td>{{ item.id_per }}</td>
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.username }}</td>
+                                            <td>{{ item.email }}</td>
                                             
-                                            <td>
+                                            
+                                            <!-- <td>
                                                 <a href="update/{{ item.id_account }}" class="btn btn-info btn-circle btn-sm">
                                                     <i class="fas fa-info-circle"></i>
                                                 </a>
-                                            </td>
-                                            <!-- <td>       
+                                            </td> -->
+                                            <td>       
                                                             
-                                                <a href="del/{{ item.id_account }}" class="btn btn-danger btn-circle btn-sm" >
+                                                <a href="del/{{ item.id }}" class="btn btn-danger btn-circle btn-sm" >
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                                  
-                                            </td> -->
+                                            </td>
                                             
                                         </tr>
                                         {% endfor %}

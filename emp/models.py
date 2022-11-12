@@ -22,7 +22,7 @@ class EMPs(models.Model):
     numberPhone= models.IntegerField()
     address= models.CharField(max_length= 30)
     salary= models.FloatField(default= 0)
-    id_account= models.ForeignKey(Account, on_delete=models.CASCADE)
+    id_account= models.ForeignKey(Account, on_delete=models.SET_NULL, null=True,blank=True)
     status= models.BooleanField(default= True)
 
     def __str__(self):

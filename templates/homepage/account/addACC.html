@@ -84,13 +84,8 @@
                                         placeholder="Mật khẩu">
                                 </div>
                                     <div class="form-group ">
-                                        <label>Quyền: </label>
-
-                                        <select name="per">
-                                        {% for i in per %}
-                                            <option value="{{ i.id_per }}">{{ i.name_per }}</option>
-                                        {% endfor %}
-                                        </select>
+                                        <input type="email" class="form-control form-control-user" name="email"
+                                        placeholder="Email">
 
                                     </div>
 
