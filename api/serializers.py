@@ -32,17 +32,17 @@ class AccountSerializer(serializers.ModelSerializer):
         model= Account
         fields = ('id_account', 'name_account', 'password' ,'id_per' )
 
-        extra_kwargs= {
-        'password': {'write_only': 'true'}
+    #     extra_kwargs= {
+    #     'password': {'write_only': 'true'}
 
-        }
+    #     }
 
-    def create(self, validated_data):
-        user= Account(**validated_data)
-        user.set_password(user.password)
-        user.save()
+    # def create(self, validated_data):
+    #     user= Account(**validated_data)
+    #     user.set_password(user.password)
+    #     user.save()
 
-        return user
+    #     return user
 
 class PermissionSerializer(serializers.ModelSerializer):
 
