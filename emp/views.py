@@ -21,11 +21,6 @@ from .forms import CreateEMPPostForm
 
 def getAllEMP(request):
 
-    # context = {}
-    # emp = get_object_or_404(EMPs, pk = 'id') # dùng khi có điều kiện
-    # emp = EMPs.objects.all()
-
-    # context['emps']= emp
     url_api= requests.get('https://apichicken.herokuapp.com/api/emp/')
     context = url_api.json()
 
