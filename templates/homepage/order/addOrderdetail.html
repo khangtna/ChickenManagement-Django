@@ -29,7 +29,6 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-            
 
             <!-- Main Content -->
             <div id="content">
@@ -66,62 +65,69 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                
-                <!-- /.container-fluid -->
-                <div class="card shadow mb-4">
-                    
-                <div class="card-body">
+                <div class="row justify-content-center">
 
-                    <p class="mb-4">Bạn muốn thêm đồ ăn? Nhấn vào đây: 
-                        <a href="orderdetail/add" class="btn btn-primary btn-user ">
-                            Thêm đồ ăn
+                    <!-- Page Heading -->
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Nhập thông tin món ăn!</h1>
+                            </div>
+                            <form action=""  method="post">
 
-                        </a>
+                                {% csrf_token %}
 
-                        <p class="mb-4">Bạn muốn xem hóa đơn? Nhấn vào đây: 
-                            <a href="/order/{{ emp.email }}" class="btn btn-primary btn-user ">
-                                Trở lại
-    
-                            </a>
-                    </p>
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>ID chi tiết</th>
-                                    <th>ID đơn hàng</th>
-                                    <th>ID sản phẩm</th>
-                                    <th>Số lượng</th>   
-                                    <th>Thời gian</th>     
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>Mã nhân viên: </label>
+                                        <input type="text" class="form-control form-control-user" name="maNV"
+                                            placeholder="Nhân viên"  value="{{ emp.id }}" readonly>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Mã hóa đơn: </label>
+                                        <input type="text" class="form-control form-control-user" name="maHD"
+                                            placeholder="Số hóa đơn" value="{{ order.id_Order }}" readonly>
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+
+                                            <label>Đồ ăn: </label>
                                     
-                                    <th><b><i>Xóa</i></b></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                {% for item in orderdetail %}
-                                        <tr>
-                                            <td>{{ item.id_orderdetail }}</td>
-                                            <td>{{ item.id_Order }}</td>
-                                            <td>{{ item.id_Product }}</td>
-                                            <td>{{ item.quantity }}</td>
-                                            <td>{{ item.date_orderdetail }}</td>
-                                            
-                                            
-                                            <td>       
-                                                            
-                                                <a href="orderdetail/del/{{ item.id_orderdetail }}" class="btn btn-danger btn-circle btn-sm" >
-                                                    <i class="fas fa-trash"></i>
-                                                </a>
-                                                 
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                            </tbody>
-                        </table>
+                                            <select name="maMonAn">
+                                                {% for i in product %}
+                                                <option value="{{ i.id_product }}">{{ i.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control form-control-user"
+                                            name="quantity" placeholder="Số lượng">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Trạng thái: </label>
+                                             <ul>
+                                                <input type="radio" name="status" value="True" data-parsley-
+                                                    multiple="status" checked> True </input>
+                                                <input type="radio" name="status" value="False" data-parsley-
+                                                    multiple="status"> False</input>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Thêm món ăn
+                                </button>
+                                <a href="/order/{{ emp.email }}/{{ order.id_Order }}/orderdetail" class="btn bg-gray-200 btn-user btn-block">
+                                    Trở lại
+                                </a>
+                            </form>
+                        </div>
                     </div>
+
                 </div>
-                </div>
+                
             </div>
             <!-- End of Main Content -->
 

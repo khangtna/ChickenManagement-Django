@@ -9,3 +9,6 @@ class HomeView(View):
 
 # def Home(request):
 #         return render(request, 'homepage/User.html')
+
+def base(request):
+        return render(request, 'homepage/base.html')

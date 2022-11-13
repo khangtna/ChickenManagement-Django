@@ -7,7 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, permissions, viewsets
 
-from .forms import CreateProductPostForm
+from .forms import CreateOrderdetailPostForm
 
 import requests
 import json
@@ -17,12 +17,12 @@ import json
 
 def userHome(request, email):
 
-    url_api= 'http://127.0.0.1:8000/api/infouser/%s' %email
+    url_api= 'https://apichicken.herokuapp.com/api/infouser/%s' %email
 
     emp_= requests.get(url_api)
     emp= emp_.json()
 
-    url_api_order= 'http://127.0.0.1:8000/api/order/'
+    url_api_order= 'https://apichicken.herokuapp.com/api/order/'
 
     order_= requests.get(url_api_order)
     order= order_.json()
@@ -37,7 +37,7 @@ def userHome(request, email):
 def getAllOrder(request):
 
     context= {}
-    url_api= requests.get('http://127.0.0.1:8000/api/order/')
+    url_api= requests.get('https://apichicken.herokuapp.com/api/order/')
     # print(type(url_api))
     context = url_api.json()
     # print(type(context))
@@ -50,12 +50,12 @@ def getAllOrder(request):
 
 def addOrder(request, email):
 
-    url_api= 'http://127.0.0.1:8000/api/infouser/%s' %email
+    url_api= 'https://apichicken.herokuapp.com/api/infouser/%s' %email
 
     emp_= requests.get(url_api)
     emp= emp_.json()
 
-    url_api_order= 'http://127.0.0.1:8000/api/order/'
+    url_api_order= 'https://apichicken.herokuapp.com/api/order/'
 
     data={}     
 
@@ -68,47 +68,48 @@ def addOrder(request, email):
     return redirect('info-user', email=email)
 
 
-
+#oderdetail
 def Orderdetail(request, email, id):
 
-    url_api_emp= 'http://127.0.0.1:8000/api/infouser/%s' %email
+    url_api_emp= 'https://apichicken.herokuapp.com/api/infouser/%s' %email
     emp_= requests.get(url_api_emp)
     emp= emp_.json()
 
 
-    url_api_product= 'http://127.0.0.1:8000/api/product/' 
+    url_api_product= 'https://apichicken.herokuapp.com/api/product/' 
     product_= requests.get(url_api_product)
     product= product_.json()
 
 
-    url_api_order= 'http://127.0.0.1:8000/api/order/%s' %id
+    url_api_order= 'https://apichicken.herokuapp.com/api/order/%s' %id
     order_= requests.get(url_api_order)
     order= order_.json()
 
 
-    url_api_orderdetail= 'http://127.0.0.1:8000/api/order/%s/orderdetail/' %id
+    url_api_orderdetail= 'https://apichicken.herokuapp.com/api/order/%s/orderdetail/' %id
 
     orderdetail_= requests.get(url_api_orderdetail)
     orderdetail= orderdetail_.json()
 
 
-    url_api= 'http://127.0.0.1:8000/api/orderdetail/'
+    url_api= 'https://apichicken.herokuapp.com/api/orderdetail/'
     
     data={}     
 
+    form= CreateOrderdetailPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
     data['id_Order']= order['id_Order']
-    data['id_Product']= request.POST.get('maMonAn')
-    data['quantity']= request.POST.get('quantity')
+    data['id_Product']= form.data.get('maMonAn')
+    data['quantity']= form.data.get('quantity')
 
     data1= {}
 
-    
 
-
-    print(data)
     
-    requests.post(url_api, data=data)
-    requests.post(url_api_order, data=data1)
+    # requests.post(url_api, data=data)
+    # requests.post(url_api_order, data=data1)
 
     return render(request, 'homepage/order/Orderdetail.html', {
 
@@ -120,5 +121,76 @@ def Orderdetail(request, email, id):
 
         })
 
+
+def addOrderdetail(request, email, id):
+
+    url_api_emp= 'https://apichicken.herokuapp.com/api/infouser/%s' %email
+    emp_= requests.get(url_api_emp)
+    emp= emp_.json()
+
+
+    url_api_product= 'https://apichicken.herokuapp.com/api/product/' 
+    product_= requests.get(url_api_product)
+    product= product_.json()
+
+
+    url_api_order= 'https://apichicken.herokuapp.com/api/order/%s' %id
+    order_= requests.get(url_api_order)
+    order= order_.json()
+
+
+    url_api_orderdetail= 'https://apichicken.herokuapp.com/order/%s/orderdetail/' %id
+
+    orderdetail_= requests.get(url_api_orderdetail)
+    orderdetail= orderdetail_.json()
+
+
+    url_api= 'https://apichicken.herokuapp.com/api/orderdetail/'
+    
+    data={}     
+
+    form= CreateOrderdetailPostForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
+    data['id_Order']= form.data.get('maHD')
+    data['id_Product']= form.data.get('maMonAn')
+    data['quantity']= form.data.get('quantity')
+
+
+    
+    requests.post(url_api, data=data)
+    # requests.post(url_api_order, data=data1)
+
+    return render(request, 'homepage/order/addOrderdetail.html', {
+
+        'emp': emp,
+        'product': product,
+        'order': order,
+        'orderdetail':orderdetail
+
+
+        })
+
+
+
+def delOrderdetail(request, email,id, idorder):
+
+    url_api= 'https://apichicken.herokuapp.com/api/infouser/%s' %email
+
+    emp_= requests.get(url_api)
+    emp= emp_.json()
+
+    url_api_orderdetail= 'https://apichicken.herokuapp.com/api/orderdetail/%s' %id
+
+    data={}     
+
+    # data['id_orderdetail']= 
+
+    # print(data)
+    
+    requests.delete(url_api_orderdetail, data=data)
+
+    return redirect('order-orderdetail', email=email, id= idorder)
 
 

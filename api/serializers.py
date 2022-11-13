@@ -5,7 +5,7 @@ from rest_framework import serializers
 from emp.models import EMPs
 from product.models import Products, Category
 from account.models import Account, Permission
-from order.models import Order, OrderDetail
+from order.models import Order, OrderDetails
 
 
 class EMPSerializer(serializers.ModelSerializer):
@@ -92,7 +92,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class OrderDetailSerializer(serializers.ModelSerializer):
     class Meta:
-        model = OrderDetail
-        fields = ('id_Order', 'id_Product', 'quantity', 'date_orderdetail')
+        model = OrderDetails
+        fields = ( 'id_orderdetail','id_Order', 'id_Product', 'quantity', 'date_orderdetail')
 
 

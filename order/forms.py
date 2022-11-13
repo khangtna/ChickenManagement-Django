@@ -1,12 +1,12 @@
 from django import forms
 
-from .models import Products
+from .models import OrderDetails
 
 
-class CreateProductPostForm(forms.ModelForm):
+class CreateOrderdetailPostForm(forms.ModelForm):
 
 	class Meta:
-		model = Products
-		fields = {'name', 'id_category','price', 'status' }
+		model = OrderDetails
+		fields = {'id_orderdetail','id_Order', 'id_Product', 'quantity' }
 		
 		

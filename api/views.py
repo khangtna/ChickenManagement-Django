@@ -17,7 +17,7 @@ from knox.models import AuthToken
 from emp.models import EMPs
 from product.models import Products, Category
 from account.models import Account, Permission
-from order.models import Order, OrderDetail
+from order.models import Order, OrderDetails
 
 from .serializers import (
 
@@ -255,7 +255,7 @@ class apiOrder(viewsets.ModelViewSet):
 
 
 class apiOrderDetail(viewsets.ModelViewSet):
-    queryset = OrderDetail.objects.all()
+    queryset = OrderDetails.objects.all()
     serializer_class = OrderDetailSerializer
     permission_classes = [permissions.AllowAny,]
     http_method_names = ['patch','put','get','post','delete' ]

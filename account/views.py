@@ -20,15 +20,7 @@ def loginHome(request):
 
 def login(request):
 
-    # url_api_permission= requests.get('https://apichicken.herokuapp.com/api/permission/')
-    # permission_ = url_api_permission.json()
-
-    # url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
-    # account_ = url_api_account.json()
-
-
-
-    # url_api_account= 'https://apichicken.herokuapp.com/api/login/'
+    
     url_api_account= 'https://apichicken.herokuapp.com/api/login/'
 
     data={}
@@ -107,7 +99,7 @@ def getAllAccount(request):
 
 def addAcc(request):
 
-    url_api_add= 'https://apichicken.herokuapp.com/api/user/'
+    url_api_add= 'https://apichicken.herokuapp.com/api/register/'
     data={}     
     
     form= AccountPostForm(request.POST or None)
@@ -125,7 +117,7 @@ def addAcc(request):
         data['password']= form.data.get('matKhau')
         data['email']= form.data.get('email')
   
-    # print(data)
+    print(data)
     
     requests.post(url_api_add, data=data)
 
@@ -134,7 +126,7 @@ def addAcc(request):
 
 def delAcc(request, id):
 
-    url_api= 'https://apichicken.herokuapp.com/api/account/%s' %id
+    url_api= 'https://apichicken.herokuapp.com/api/user/%s' %id
 
     data={}     
 
@@ -144,7 +136,7 @@ def delAcc(request, id):
 
     data['name_account']= form.data.get('tenDN')
     data['password']= form.data.get('matKhau')
-    data['id_per']= form.data.get('per')
+    data['email']= form.data.get('email')
 
     # print(data)
     

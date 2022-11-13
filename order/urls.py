@@ -15,6 +15,8 @@ urlpatterns = [
     path('<email>', views.userHome, name='info-user'),
     path('<email>/add', views.addOrder, name='addorder'),
     path('<email>/<id>/orderdetail', views.Orderdetail, name='order-orderdetail'),
+    path('<email>/<id>/orderdetail/add', views.addOrderdetail, name='addorderdetail'),
+    path('<email>/<idorder>/orderdetail/del/<id>', views.delOrderdetail, name='delorderdetail'),
    
     
 ]

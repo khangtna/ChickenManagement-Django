@@ -20,8 +20,27 @@ class Order(models.Model):
         return str(self.id_Order)
 
 
-class OrderDetail(models.Model):
+# class OrderDetail(models.Model):
 
+#     # id_orderdetail = models.AutoField(primary_key=True, default=0)
+#     id_Order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank= True, null=True, related_name="orderdetail")
+#     id_Product= models.ForeignKey(Products, on_delete=models.SET_NULL, blank= True, null=True)
+#     quantity = models.IntegerField(default=1)
+#     # sum_price= models.FloatField(default=0)
+#     date_orderdetail = models.DateTimeField(auto_now_add= True)
+    
+
+#     def __str__(self):
+#         return str(self.id_Order)
+
+#     def get_total_price(self):
+#         return self.quantity * self.id_Product.price
+
+
+
+class OrderDetails(models.Model):
+
+    id_orderdetail = models.AutoField(primary_key=True)
     id_Order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank= True, null=True, related_name="orderdetail")
     id_Product= models.ForeignKey(Products, on_delete=models.SET_NULL, blank= True, null=True)
     quantity = models.IntegerField(default=1)
@@ -34,6 +53,4 @@ class OrderDetail(models.Model):
 
     def get_total_price(self):
         return self.quantity * self.id_Product.price
-
-
 
