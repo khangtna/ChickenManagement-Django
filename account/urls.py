@@ -17,5 +17,7 @@ urlpatterns = [
     # path('permission/add/', views.addPer, name='addper'),
     # path('permission/update/<id>', views.editPer, name='editper'),
 
+    # path('info/<email>', views.userHome, name='info-user'),
+
     
 ]

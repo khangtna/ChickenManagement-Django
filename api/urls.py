@@ -14,6 +14,11 @@ router.register('product', views.apiProduct)
 router.register('account', views.apiAccount)
 router.register('permission', views.apiPermission)
 router.register('user', views.apiUser)
+router.register('info', views.apiInfoEMP, basename='infoemp')
+router.register('order', views.apiOrder)
+router.register('orderdetail', views.apiOrderDetail)
+# router.register('orderemp', views.apiOrderEmp, basename='orderemp')
+
 
 # app_name= 'emp'
 
@@ -26,6 +31,10 @@ urlpatterns = [
     path('login/', views.LoginAPI.as_view(), name='api-login'),
     path('logout/', knox_views.LogoutView.as_view(), name='api-logout'),
     # path('logoutall/', knox_views.LogoutAllView.as_view(), name='api-logoutall'),
+
+    path('infouser/<email>', views.api_getInfoEmp, name='info'),
+
+    # path('orderemp/<id>', views.api_getOrderEmp, name='orderemp'),
 
     path('a/', views.api_getAllEmp, name='apiemp'),
     # path('create', views.api_createEmp, name='create'),

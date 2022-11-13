@@ -1,0 +1,216 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+
+{% block cssblock %}
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'homepage/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'homepage/css/sb-admin-2.min.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this page -->
+    <link href="{% static 'homepage/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content1 %}
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+{% endblock %}
+
+    {% block content2 %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    {% endblock %}
+
+
+
+                    {% block content3 %}
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="row justify-content-center">
+
+                    <!-- Page Heading -->
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Nhập thông tin món ăn!</h1>
+                            </div>
+                            <form action=""  method="post">
+
+                                {% csrf_token %}
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <label>Mã nhân viên: </label>
+                                        <input type="text" class="form-control form-control-user" name="maNV"
+                                            placeholder="Nhân viên"  value="{{ emp.id }}" readonly>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Mã hóa đơn: </label>
+                                        <input type="text" class="form-control form-control-user" name="maHD"
+                                            placeholder="Số hóa đơn" value="{{ order.id_Order }}" readonly>
+                                    </div>
+                                </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+
+                                            <label>Đồ ăn: </label>
+                                    
+                                            <select name="maMonAn">
+                                                {% for i in product %}
+                                                <option value="{{ i.id_product }}">{{ i.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="number" class="form-control form-control-user"
+                                            name="quantity" placeholder="Số lượng">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Trạng thái: </label>
+                                             <ul>
+                                                <input type="radio" name="status" value="True" data-parsley-
+                                                    multiple="status" checked> True </input>
+                                                <input type="radio" name="status" value="False" data-parsley-
+                                                    multiple="status"> False</input>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                    Thêm món ăn
+                                </button>
+                                <a href="/order/{{ emp.email }}" class="btn bg-gray-200 btn-user btn-block">
+                                    Trở lại
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+                <div class="card shadow mb-4">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>ID đơn hàng</th>
+                                    <th>ID sản phẩm</th>
+                                    <th>Số lượng</th>   
+                                    <th>Thời gian</th>     
+                                    
+                                    <th><b><i>Xóa</i></b></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% for item in orderdetail %}
+                                        <tr>
+                                            <td>{{ item.id_Order }}</td>
+                                            <td>{{ item.id_Product }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.date_orderdetail }}</td>
+                                            
+                                            
+                                            <td>       
+                                                            
+                                                <a href="del/{{ item.id }}" class="btn btn-danger btn-circle btn-sm" >
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                                 
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+    {% endblock %}
+
+
+{% block jsblock %}
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'homepage/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'homepage/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'homepage/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'homepage/js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{% static 'homepage/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'homepage/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{% static 'homepage/js/demo/datatables-demo.js' %}"></script>
+
+{% endblock %}

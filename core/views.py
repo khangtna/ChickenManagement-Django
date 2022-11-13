@@ -7,5 +7,5 @@ class HomeView(View):
         return render(request, 'homepage/index.html')
 
 
-def Home(request):
-        return render(request, 'homepage/User.html')
+# def Home(request):
+#         return render(request, 'homepage/User.html')

@@ -28,6 +28,7 @@ def login(request):
 
 
 
+    # url_api_account= 'https://apichicken.herokuapp.com/api/login/'
     url_api_account= 'https://apichicken.herokuapp.com/api/login/'
 
     data={}
@@ -57,12 +58,12 @@ def login(request):
 
         if b['username']== 'admin':
 
-            # context['email']= b['email']
+            context['email']= b['email']
             return redirect('/emp')
             
         else:
-            # context['email']= b['email']
-            return redirect('/user')
+            context['email']= b['email']
+            return redirect('info-user', email= b['email'])
     
     
     return render(request, 'homepage/login.html',{
@@ -73,6 +74,19 @@ def login(request):
 def logoutUser(request):
     logout(request)
     return redirect('/')
+
+
+# def userHome(request, email):
+
+#     url_api= 'http://127.0.0.1:8000/api/infouser/%s' %email
+
+#     emp= requests.get(url_api)
+#     context= emp.json()
+
+
+#     return render(request, 'homepage/order/Order.html', {
+#         'emp': context
+#     })
 
 
 

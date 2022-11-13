@@ -17,6 +17,7 @@ from knox.models import AuthToken
 from emp.models import EMPs
 from product.models import Products, Category
 from account.models import Account, Permission
+from order.models import Order, OrderDetail
 
 from .serializers import (
 
@@ -26,7 +27,9 @@ from .serializers import (
     AccountSerializer,
     PermissionSerializer,
     UserSerializer,
-    RegisterSerializer
+    RegisterSerializer,
+    OrderSerializer,
+    OrderDetailSerializer
 
 )
 
@@ -201,4 +204,61 @@ class LoginAPI(KnoxLoginView):
         # return super(LoginAPI, self).post(request, format=None)
 
 
+
+class apiInfoEMP(viewsets.ViewSet, generics.ListAPIView):
+    # queryset = EMPs.objects.filter(status = True)
+    serializer_class = EMPSerializer
+    permission_classes = [permissions.AllowAny,]
+    # permission_classes = [permissions.IsAuthenticated,]
+    http_method_names = ['patch','put','get','post','delete' ]
+
+
+    def get_queryset(self):
+        emp = EMPs.objects.filter(status = True)
+
+        email= self.request.query_params.get('email')
+        if email is not None:
+            emp= emp.filter(email__icontains=email)
+        
+        return emp
+
+
+@api_view(['GET', ])
+def api_getInfoEmp(request,email):
+    
+    try:
+        emps = EMPs.objects.get(email = email)
+
+    except EMPs.DoesNotExist:
+        return Response(status= status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serilaizer = EMPSerializer(emps)
+        return Response(serilaizer.data)
+
+
+
+class apiOrder(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post','delete' ]
+
+
+    @action(methods=['get'],detail= True, url_path='orderdetail')
+    def get_orderdetail(self, request, pk):
+        order= Order.objects.get(pk=pk)
+        orderdetail= order.orderdetail.all()
+
+        return Response(OrderDetailSerializer(orderdetail, many = True).data, status=status.HTTP_200_OK)
+
+
+
+class apiOrderDetail(viewsets.ModelViewSet):
+    queryset = OrderDetail.objects.all()
+    serializer_class = OrderDetailSerializer
+    permission_classes = [permissions.AllowAny,]
+    http_method_names = ['patch','put','get','post','delete' ]
+
+    
 
