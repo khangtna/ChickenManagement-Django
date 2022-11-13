@@ -107,7 +107,7 @@ def updateEMP(request, id):
     url_api_account= requests.get('https://apichicken.herokuapp.com/api/account/')
     account_ = url_api_account.json()
 
-    url_api= 'https://apichicken.herokuapp.com/api/update/%s/' %id
+    url_api= 'https://apichicken.herokuapp.com/api/emp/%s' %id
     url_get='https://apichicken.herokuapp.com/api/%s/' %id
 
     info_emp= requests.get(url_get)
@@ -131,7 +131,7 @@ def updateEMP(request, id):
 
     print(data)
     
-    requests.put(url_api, data=data)
+    requests.patch(url_api, data=data)
 
     return render(request, 'homepage/emp/updateEMP.html', {
 

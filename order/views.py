@@ -42,8 +42,8 @@ def getAllOrder(request):
     context = url_api.json()
     # print(type(context))
 
-    return render(request, 'homepage/order/Oder.html', {
-        'account': context
+    return render(request, 'homepage/order/adminOrder.html', {
+        'order': context
         })
 
 
